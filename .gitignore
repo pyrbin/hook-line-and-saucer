@@ -67,7 +67,7 @@
 /[Aa]ssets/Plugins/FMOD/Cache/*
 
 /FMODProject/.*
-
+!/FMODProject/Build/
 
 # Log files can be ignored.
 fmod_editor.log
