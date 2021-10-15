@@ -9,6 +9,8 @@ public class PlayerHoldDrag : MonoBehaviour
 
     public event Action<float2> Released;
 
+    public event Action StartDrag;
+
     public float2 Drag => DragPoints.Origin - DragPoints.Current;
 
     public (float2 Origin, float2 Current) DragPoints;
@@ -42,6 +44,7 @@ public class PlayerHoldDrag : MonoBehaviour
         recording = true;
         DragPoints.Origin = Mouse.current.position.ReadValue();
         DragPoints.Current = DragPoints.Origin;
+        StartDrag?.Invoke();
     }
 
     void TriggerReleased()
