@@ -14,15 +14,17 @@ public class Bait : MonoBehaviour
     public float forceModifier = 1;
     public float timeToThrow = 10;
     
+
+    [SerializeField]
     private float force;
     private bool released = false;
-    private bool inWater = false;
+    public bool inWater = false;
 
     public float reelForce = 10f;
     public float2 reelDirection = new float2(0.2f, 1f);
 
     PlayerHoldDrag holdDrag;
-    Rigidbody2D body;
+    public Rigidbody2D body;
 
     Vector3 startPoint;
     float2 fixedEndPoint;
@@ -30,20 +32,22 @@ public class Bait : MonoBehaviour
     public bool shouldReel = false;
 
 
+    private bool startDrag = false;
 
     void Start() {
         TryGetComponent(out holdDrag);
         TryGetComponent(out body);
         startPoint = transform.position;
         body.gravityScale = 0f;
-        holdDrag.Released += (drag) => { if (!inWater && !released) Release(); };
+        holdDrag.StartDrag += () => { if (!inWater && !released) startDrag = true; };
+        holdDrag.Released += (drag) => { if (!inWater && !released && startDrag) Release(); startDrag = false; };
     }
 
     // Update is called once per frame
     void Update()
     {
         force = math.length(holdDrag.Drag)*forceModifier;
-        if (!released) {
+        if (!released && startDrag) {
             float2 endPoint = EndPoint();
             var direction = new float2(-force, force);
             DebugDraw.Line(transform.position, (float3)transform.position + new float3(direction.x, direction.y, 0), Color.green);
@@ -62,30 +66,10 @@ public class Bait : MonoBehaviour
         released = false;
         body.gravityScale = 0f;
         body.velocity = Vector2.zero;
+        body.angularVelocity = 0f;
+        body.rotation = 0f;
     }
  
-    public void OnKeyPress(InputAction.CallbackContext context)
-    {
-        if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
-            context.action.phase == InputActionPhase.Performed)
-        {
-            TriggerPressed();
-        } else if (context.action.triggered && context.action.ReadValue<float>() == default &&
-            context.action.phase == InputActionPhase.Performed)
-        {
-            released = true;
-            TriggerReleased();
-        }
-    }
-
-    public void TriggerPressed() {
-        shouldReel = true;
-    }
-
-    public void TriggerReleased() {
-        shouldReel = false;
-    }
-
     public void Reel() {
         body.AddForce(reelDirection*reelForce);
     }
@@ -100,6 +84,30 @@ public class Bait : MonoBehaviour
         return new float2(-force + transform.position.x, transform.position.y);
     }
 
+    public void OnKeyPress(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
+            context.action.phase == InputActionPhase.Performed)
+        {
+            TriggerPressed();
+        } else if (context.action.triggered && context.action.ReadValue<float>() == default &&
+            context.action.phase == InputActionPhase.Performed)
+        {
+            TriggerReleased();
+        }
+    }
+
+    public void TriggerPressed() {
+        shouldReel = true;
+    }
+
+    public void TriggerReleased() {
+        shouldReel = false;
+    }
+    
+    public void setInWater() {
+        inWater = true;
+    }
 
     public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
     {
@@ -109,14 +117,11 @@ public class Bait : MonoBehaviour
         {
             var x = Mathf.Lerp(startingPos.x, end.x, (elapsedTime / seconds));
             var y = Mathf.Sin(Mathf.Lerp(0, Mathf.PI, (elapsedTime / seconds)))*4;
-            objectToMove.transform.position = new Vector3(x, y, 0);
+            objectToMove.transform.position = new Vector3(x, startingPos.y + y, 0);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        Landed?.Invoke();
-        inWater = true;
         body.gravityScale = 0.5f;
-        objectToMove.transform.position = end;
     }
 
 }
