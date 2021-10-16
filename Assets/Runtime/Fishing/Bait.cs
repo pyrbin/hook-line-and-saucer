@@ -37,7 +37,7 @@ public class Bait : MonoBehaviour
     private Vector3 startPoint;
     private float2 fixedEndPoint;
 
-    private Fish catchedFish;
+    private Fish fishOnHook;
 
     private Rigidbody2D body;
     private PhysicsEvents2D physicsEvents;
@@ -51,24 +51,24 @@ public class Bait : MonoBehaviour
         startPoint = transform.position;
         TryGetComponent(out physicsEvents);
         TryGetComponent(out body);
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
     }
 
     public void BeginFishing()
     {
         Reset();
-        gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
     }
 
     void Start() {
         physicsEvents.CollisionEnter += (collider) => {
-            if (collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
+
+            if (fishOnHook == null &&
+                collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
                 collider.gameObject.TryGetComponent<FishSwimming>(out var fish))
             {
-                if (!catchedFish) {
-                    fish.Catch(transform);
-                    gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
-                    catchedFish = fish.GetComponent<Fish>();
-                }
+                fish.Catch(transform);
+                gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
+                fishOnHook = fish.GetComponent<Fish>();
             }
         };
 
@@ -79,11 +79,11 @@ public class Bait : MonoBehaviour
             }
 
             if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
-                if (catchedFish)
+                if (fishOnHook)
                 {
                     Reset();
-                    fishCollect.CollectFish(catchedFish);
-                    catchedFish = null;
+                    fishCollect.CollectFish(fishOnHook);
+                    fishOnHook = null;
                 }
                 else if (inWater)
                 {
@@ -160,6 +160,7 @@ public class Bait : MonoBehaviour
     public void setInWater() {
         HitWater?.Invoke();
         inWater = true;
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
     }
 
     public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
