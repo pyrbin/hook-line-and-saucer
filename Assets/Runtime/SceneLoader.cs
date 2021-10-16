@@ -28,14 +28,12 @@ public class SceneLoader : MonoBehaviour
             DestroyImmediate(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public void NextScene()
     {
         var scene = SceneManager.GetActiveScene();
-        int nextLevelBuildIndex = scene.buildIndex + 1 % SceneManager.sceneCount;
+        int nextLevelBuildIndex = scene.buildIndex + 1 % SceneManager.sceneCountInBuildSettings;
 
         StartCoroutine(LoadScene(nextLevelBuildIndex));
     }
