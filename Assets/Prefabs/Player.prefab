@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5904256521864343440}
   - component: {fileID: 5904256521864343444}
   - component: {fileID: 5904256521864343445}
+  - component: {fileID: 3601205401128734490}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -161,10 +162,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dampening: 0.933
-  Debugging: 0
+  Debugging: 1
   HoldDrag: {fileID: 5904256521864343446}
   Fish: {fileID: 0}
-  dragMax: 50
+  dragMax: 300
+  hasNotThrown: 1
 --- !u!114 &5904256521864343444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,3 +200,20 @@ MonoBehaviour:
   holdDrag: {fileID: 5904256521864343446}
   throwFish: {fileID: 5904256521864343440}
   fishingRod: {fileID: 5904256521864343444}
+--- !u!114 &3601205401128734490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904256521864343443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d53aa39179cd0408d3231e64b0708a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPower: 700
+  RechargeRate: 40
+  holdDrag: {fileID: 5904256521864343446}
+  currentPower: 0
+  active: 1

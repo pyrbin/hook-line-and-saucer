@@ -46,4 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishCollectArea: {fileID: 0}
   fishProjectilePosition: {fileID: 0}
+  cameraManager: {fileID: 0}
+  playerThrowFish: {fileID: 0}
+  dragPower: {fileID: 0}
+  hudManager: {fileID: 0}
   player: {fileID: 0}
