@@ -29,6 +29,11 @@ public static class GameObjectExtensions
         foreach (T i in gameObject.GetComponents<T>()) action(i);
     }
 
+    public static void ForEachComponentInChildren<T>(this GameObject gameObject, Action<T> action)
+    {
+        foreach (T i in gameObject.GetComponentsInChildren<T>()) action(i);
+    }
+
     public static bool TryGetComponentSelfOrParent<T>(this Behaviour self, out T component) where T : Component
     {
         try

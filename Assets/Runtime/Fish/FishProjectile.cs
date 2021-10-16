@@ -59,10 +59,7 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 
         Body.isKinematic = true;
 
-        foreach(var co in GetComponentsInChildren<Collider2D>())
-        {
-            co.enabled = false;
-        }
+        gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = false);
 
         Timers.SetTimeout(timeInsMs, () =>
         {
@@ -98,6 +95,8 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         Body.velocity = float2.zero;
         IsActive = true;
         doDamage = false;
+
+        gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = true);
 
         Parent.PhysicsEvents.CollisionEnter += OnCollision;
     }
