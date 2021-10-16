@@ -6,9 +6,9 @@ using UnityEngine;
 public class FishCollectArea : MonoBehaviour
 {
 
-    public Action<Fish, FishingRod> FishCollected;
+    public Action<Fish> FishCollected;
 
-    public void CollectFish(Fish fish, FishingRod fishingRod) {
-        FishCollected?.Invoke(fish, fishingRod);
+    public void CollectFish(Fish fish) {
+        FishCollected?.Invoke(fish);
     }
 }
