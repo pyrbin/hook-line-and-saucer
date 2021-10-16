@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class FishSwimming : MonoBehaviour
+[RequireComponent(typeof(Fish))]
+public class FishSwimming : MonoBehaviour, IFishStateBehaviour
 {
     [NaughtyAttributes.Required]
     public Transform NosePoint;
@@ -24,13 +23,17 @@ public class FishSwimming : MonoBehaviour
 
     private float3 pos;
 
-    void Start()
+    bool shouldSwim = false;
+
+    void Awake()
     {
-        pos = transform.position;
+        ExitState();
     }
 
     void Update()
     {
+        if (!shouldSwim) return;
+
         CheckSwitch();
         Move();
     }
@@ -56,12 +59,20 @@ public class FishSwimming : MonoBehaviour
     void Move()
     {
         pos += dir * Time.deltaTime * SwimSpeed;
-
         Model.transform.localPosition = (math.up() * math.sin(Time.time * Frequency) * Magnitude);
-
-        // var next = pos + (math.up() * math.sin(Time.time * Frequency) * Magnitude);
-
         transform.position = pos; 
     }
 
+    public void SetupState()
+    {
+        shouldSwim = true;
+        pos = transform.position;
+        transform.rotation = quaternion.identity;
+    }
+
+    public void ExitState()
+    {
+        shouldSwim = false;
+        Model.transform.rotation = quaternion.identity;
+    }
 }

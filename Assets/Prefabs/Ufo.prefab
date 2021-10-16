@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3674249750534805487}
   - component: {fileID: 3674249750534805486}
   - component: {fileID: 6976533023859083635}
+  - component: {fileID: 7544282128450731861}
   m_Layer: 7
   m_Name: Ufo
   m_TagString: Untagged
@@ -57,8 +58,10 @@ MonoBehaviour:
     y: 1.5
   AttackTime: 2
   ProjectilePrefab: {fileID: 6880988547731118312, guid: 1cde3c960c26e044cadcecb876f3c5fd, type: 3}
-  Debugging: 0
+  Debugging: 1
+  Idle: 0
   Target: {fileID: 0}
+  Health: {fileID: 0}
 --- !u!50 &3674249750534805486
 Rigidbody2D:
   serializedVersion: 4
@@ -67,14 +70,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3674249750534805483}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -96,6 +99,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.022110963, y: 0.18241577}
   m_Size: {x: 2.2211096, y: 0.8612986}
   m_Direction: 1
+--- !u!114 &7544282128450731861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674249750534805483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ebebff931318c41af8da052b8d2bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 3
 --- !u!1 &3674249750870280657
 GameObject:
   m_ObjectHideFlags: 0

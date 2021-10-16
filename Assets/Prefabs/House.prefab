@@ -95,7 +95,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -242,9 +242,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6160708308581148387}
   - component: {fileID: 6160708308581148386}
+  - component: {fileID: 5913678673892719639}
   m_Layer: 6
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +279,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57eaf32ccfb9544db0ab87661a960f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
   Model: {fileID: 6160708307814462196}
   Mask: {fileID: 6160708307856567378}
+  Health: {fileID: 5913678673892719639}
+--- !u!114 &5913678673892719639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6160708308581148384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ebebff931318c41af8da052b8d2bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1000

@@ -5,8 +5,6 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class House : MonoBehaviour
 {
-    public ushort Health;
-
     [NaughtyAttributes.Required]
     public SpriteRenderer Model;
 
@@ -16,7 +14,7 @@ public class House : MonoBehaviour
     [NaughtyAttributes.Button("Test Damage 1")]
     public void TestDamage()
     {
-        Damage(1);
+        Health.Damage(1);
     }
 
     [NaughtyAttributes.Button("Reset")]
@@ -26,17 +24,8 @@ public class House : MonoBehaviour
     }
 #endif
 
-    public event Action<ushort> OnDamage;
-
-    public event Action OnDeath;
-
-    [NaughtyAttributes.ShowNonSerializedField()]
-    private ushort currentHealth = 0;
-
-    [NaughtyAttributes.ShowNonSerializedField()]
-    private ushort maxHealth = 0;
-
-    private float HealthFactor => ((float)currentHealth / (float)maxHealth);
+    [HideInInspector]
+    public Health Health;
 
     void OnValidate()
     {
@@ -52,45 +41,27 @@ public class House : MonoBehaviour
 
     void ValidateData()
     {
+        TryGetComponent(out Health);
+
         Mask = GetComponentInChildren<SpriteMask>();
-        maxHealth = Health;
-        currentHealth = Health;
+
         Model.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
         Mask.sprite = Model.sprite;
+
         UpdateSpritePosition();
+
+        Health.OnDamage += (_) =>
+        {
+            UpdateSpritePosition();
+        };
     }
 
     void UpdateSpritePosition()
     {
-        var diff = (1f - HealthFactor);
+        var diff = 1f - Health.Factor;
         var yoffset = ((Model.sprite.rect.height * 0.9f) / Model.sprite.pixelsPerUnit) * diff;
 
         Model.transform.localPosition = new float3(Model.transform.localPosition.x, -yoffset, Model.transform.localPosition.z);
-    }
-
-    public void Damage(ushort value)
-    {
-        var clamped = (ushort)math.min(value, (int)currentHealth);
-        currentHealth -= clamped;
-
-        if (clamped > 0)
-            OnDamageInternal(clamped);
-    }
-
-    private void OnDamageInternal(ushort value)
-    {
-        UpdateSpritePosition();
-
-        OnDamage?.Invoke(value);
-
-        if (currentHealth == 0)
-        {
-            OnDeathInternal();
-        }
-    }
-
-    private void OnDeathInternal()
-    {
-        OnDeath?.Invoke();
     }
 }

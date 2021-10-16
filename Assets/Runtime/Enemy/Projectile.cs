@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         var house = other?.GetComponentInParent<House>();
         if (house)
         {
-            house.Damage(DamageAmount);
+            house.Health.Damage(DamageAmount);
             Destroy(this.gameObject);
         }
     }

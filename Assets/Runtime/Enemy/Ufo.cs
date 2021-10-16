@@ -1,16 +1,18 @@
 
+using ElRaccoone.Timers;
 using Unity.Mathematics;
 using UnityEngine;
 
+[RequireComponent(typeof(Health), typeof(Rigidbody2D))]
 public class Ufo : MonoBehaviour
 {
     [Header("Movement")]
     public float Speed = 1.0f;
-    public float2 SpeedRandom = new float2(0.8f, 1.5f);
+    public float2 SpeedRandom = new (0.8f, 1.5f);
 
     [Header("Range")]
     public float AttackRange = 2;
-    public float2 AttackRangeRandom = new float2(0.8f, 1.5f);
+    public float2 AttackRangeRandom = new (0.8f, 1.5f);
 
     [Header("Weapon")]
     public float AttackTime;
@@ -18,22 +20,71 @@ public class Ufo : MonoBehaviour
 
     [Space]
     public bool Debugging = true;
+    public bool Sleeping = false;
 
     [NaughtyAttributes.ReadOnly]
     public House Target;
 
     private float attackTimer = 0;
-    private bool isAttacking = false;
     private float3 cacheTargetPos = float3.zero;
+
+    [HideInInspector]
+    public Health Health;
+
+    private Rigidbody2D Body;
+
+    private bool WaitForStabilize = true;
+
+    public void ThrowFish(Fish fish, float2 thrust, bool doDamage)
+    {
+        if (doDamage)
+            Health.Damage(fish.Stats.Damage);
+
+        if (Health.Empty)
+            return;
+
+        const float thrustMod = 0.85f;
+
+        Body.AddForce(thrust * thrustMod, ForceMode2D.Force);
+
+        WaitForStabilize = true;
+    }
 
     void Start()
     {
+        ValidateData();
+
+        Health.OnDeath += () =>
+        {
+            Destroy(this.gameObject);
+        };
+    }
+
+    void ValidateData()
+    {
+        TryGetComponent(out Health);
+        TryGetComponent(out Body);
+
+        Body.gravityScale = 0f;
+        Body.drag = 2f;
+
         AttackRange *= UnityEngine.Random.Range(AttackRangeRandom.x, AttackRangeRandom.y);
         Speed *= UnityEngine.Random.Range(SpeedRandom.x, SpeedRandom.y);
+
+        Health.Reset();
     }
 
     void Update()
     {
+        if (WaitForStabilize)
+        {
+            if (Body.velocity.magnitude <= .75f)
+                WaitForStabilize = false;
+            return;
+        }
+
+        if (Sleeping) return;
+
         if (Target)
         {
             PursueTarget();
@@ -43,7 +94,7 @@ public class Ufo : MonoBehaviour
             cacheTargetPos = Target.transform.position;
             cacheTargetPos.x += UnityEngine.Random.Range(-1, 1f);
 
-            Target.OnDeath += () =>
+            Target.Health.OnDeath += () =>
             {
                 Target = null;
             };
@@ -52,7 +103,7 @@ public class Ufo : MonoBehaviour
 
     void OnDestroy()
     {
-        UfoManager.instance.RemoveSelf(this);
+        UfoManager.instance?.RemoveSelf(this);
     }
 
     void PursueTarget()
