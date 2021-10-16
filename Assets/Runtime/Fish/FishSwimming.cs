@@ -25,6 +25,8 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
 
     bool shouldSwim = false;
 
+    private Transform hook;
+
     void Awake()
     {
         ExitState();
@@ -32,6 +34,7 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
 
     void Update()
     {
+        if (hook) transform.position = hook.position;
         if (!shouldSwim) return;
 
         CheckSwitch();
@@ -74,5 +77,16 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
     {
         shouldSwim = false;
         Model.transform.rotation = quaternion.identity;
+    }
+
+    public void Catch(Transform hook)
+    {
+        gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = false);
+        this.hook = hook;
+        shouldSwim = false;
+    }
+
+    public void RemoveHook() {
+        hook = null;
     }
 }

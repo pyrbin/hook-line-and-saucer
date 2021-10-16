@@ -30,8 +30,13 @@ public class Bait : MonoBehaviour
 
     public Transform poleTip;
 
+    [HideInInspector]
+    public PhysicsEvents2D physicsEvents;
+
     Vector3 startPoint;
     float2 fixedEndPoint;
+
+    public FishingRod fishingRod;
 
     public bool shouldReel = false;
     private bool startDrag = false;
@@ -43,6 +48,8 @@ public class Bait : MonoBehaviour
     [Range(-20, 0)]
     public float distanceOffset;
 
+
+    private Fish catchedFish;
 
     void Awake() {
         startPoint = transform.position;
@@ -57,6 +64,39 @@ public class Bait : MonoBehaviour
     }
 
     void Start() {
+        TryGetComponent<PhysicsEvents2D>(out physicsEvents);
+
+        physicsEvents.CollisionEnter += (collider) => {
+            if (collider.gameObject.TryGetComponent<FishSwimming>(out var fish)) {
+                if (!catchedFish) {
+                    fish.Catch(transform);
+                    catchedFish = fish.GetComponent<Fish>();
+                }
+            }
+        };
+
+        physicsEvents.TriggerEnter += (collision) => {
+            if (collision.TryGetComponent<Water>(out var Water))  {
+                setInWater();
+                reelDirection = new float2(0.1f, 1f);
+            }
+
+            if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
+                if (inWater) Reset();
+                if (catchedFish && fishingRod)  {
+                    fishCollect.CollectFish(catchedFish, fishingRod);
+                    catchedFish = null;
+                }
+            }
+        };  
+
+        physicsEvents.TriggerExit += (collision) => {
+            if (collision.TryGetComponent<Water>(out var Water))  {
+                reelDirection = new float2(0.1f, 0);
+                body.velocity =  new Vector2(body.velocity.x, 0);
+            }
+        };  
+
         TryGetComponent(out body);
         body.gravityScale = 0f;
         holdDrag.StartDrag += () => { if (!inWater && !released) startDrag = true; };

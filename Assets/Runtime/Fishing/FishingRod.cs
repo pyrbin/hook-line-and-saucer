@@ -20,6 +20,7 @@ public class FishingRod : MonoBehaviour
         bait.Released += () => {
             StartCoroutine(AngleOverSeconds(pole.gameObject, 60, 0.2f));
         };
+        bait.fishingRod = this;
         TryGetComponent(out holdDrag);
     }
 
@@ -30,7 +31,6 @@ public class FishingRod : MonoBehaviour
 
         float totalAngle = math.abs(end) + math.abs(startingAngle-360);
         
-        Debug.Log(startingAngle);
         while (elapsedTime < seconds)
         {
             var angle = Mathf.SmoothStep(0, totalAngle, (elapsedTime / seconds));
