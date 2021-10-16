@@ -8,9 +8,10 @@ public class ResetBaitOnCollision : MonoBehaviour
     void Start()
     {
         TryGetComponent<PhysicsEvents2D>(out var physicsEvents);
-        physicsEvents.CollisionEnter += (collider) => {
+        physicsEvents.TriggerEnter += (collider) => {
             collider.gameObject.TryGetComponent<Bait>(out var bait);
-            bait.Reset();
+            if (bait.inWater)
+                bait.Reset();
         };  
 
     }
