@@ -5,11 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerHoldDrag : MonoBehaviour
 {
+    public int Max = 50;
+
     public bool Debugging = true;
 
     public event Action<float2> Released;
 
     public event Action StartDrag;
+
+    public bool IsDragging => recording;
 
     public float2 Drag => DragPoints.Origin - DragPoints.Current;
 
@@ -69,10 +73,16 @@ public class PlayerHoldDrag : MonoBehaviour
 
         DragPoints.Current = Mouse.current.position.ReadValue();
 
-        if (Debugging)
+        if (math.length(Drag) > Max)
         {
-            DebugDraw.Line(DragPointsInWorld.Origin, DragPointsInWorld.Current, Color.green);
+            DragPoints.Current = DragPoints.Origin + -(math.normalize(Drag) * Max);
         }
 
+        if (Debugging)
+        {
+            DebugDraw.Line(DragPointsInWorld.Origin, DragPointsInWorld.Current, Color.yellow);
+            DebugDraw.Circle(DragPointsInWorld.Origin, 0.25f, Color.cyan);
+            DebugDraw.Circle(DragPointsInWorld.Current, 0.25f, Color.red);
+        }
     }
 }

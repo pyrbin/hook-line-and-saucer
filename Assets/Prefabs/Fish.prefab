@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 57358326791437506}
   - component: {fileID: 57358326791437507}
-  - component: {fileID: 57358326791437504}
+  - component: {fileID: 7600791813367846309}
+  - component: {fileID: 8232917502994300829}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -86,8 +87,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &57358326791437504
-CapsuleCollider2D:
+--- !u!114 &7600791813367846309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57358326791437533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb446ee19c0c4d41a60d7070330b9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &8232917502994300829
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,8 +113,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.1367188, y: 0.94921875}
+    newSize: {x: 3.1367188, y: 0.94921875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 3.1367188, y: 0.94921875}
-  m_Direction: 1
+  m_EdgeRadius: 0
 --- !u!1 &57358327424664158
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +165,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57358328306397645}
+  - component: {fileID: 171912191574046017}
   - component: {fileID: 57358328306397647}
+  - component: {fileID: 171912191574046013}
+  - component: {fileID: 7717605910490072948}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -166,6 +192,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &171912191574046017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57358328306397646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5f7017bf3362b43a7f294bd2490551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FishState: 0
+  Stats:
+    Damage: 1
+    SpeedMult: 1
+    Weight: 1
+  Swimming: {fileID: 57358328306397647}
+  Projectile: {fileID: 171912191574046013}
+  PhysicsEvents: {fileID: 7600791813367846309}
 --- !u!114 &57358328306397647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +232,42 @@ MonoBehaviour:
   Frequency: 2
   Magnitude: 0.2
   Model: {fileID: 57358326791437507}
+--- !u!114 &171912191574046013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57358328306397646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab95cfff2790c6d45b65a91d06b99b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationFactor: 15
+  IsActive: 0
+  TestForce:
+    x: 0
+    y: 8
+  doDamage: 0
+--- !u!50 &7717605910490072948
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57358328306397646}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 49239f8a7e6c0fd4684add7bd6cd9377, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
