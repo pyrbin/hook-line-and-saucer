@@ -8,38 +8,10 @@ using UnityEngine.InputSystem;
 
 public class Bait : MonoBehaviour
 {
-
     public event Action HitWater;
-    public event Action Released;
+    public event Action ReelEnded;
 
-    public float forceModifier = 1;
-    public float timeToThrow = 10;
-    public float throwHeight = 2;
-    
-
-    [SerializeField]
-    private float force;
-    public bool released = false;
-    public bool inWater = false;
-
-    public float reelForce = 10f;
-    public float2 reelDirection = new float2(0.2f, 1f);
-
-    public PlayerHoldDrag holdDrag;
-    public Rigidbody2D body;
-
-    public Transform poleTip;
-
-    [HideInInspector]
-    public PhysicsEvents2D physicsEvents;
-
-    Vector3 startPoint;
-    float2 fixedEndPoint;
-
-    public FishingRod fishingRod;
-
-    public bool shouldReel = false;
-    private bool startDrag = false;
+    public bool Debugging = true;
 
     [Range(-20, 0)]
     public float maxDistance = 10;
@@ -48,30 +20,55 @@ public class Bait : MonoBehaviour
     [Range(-20, 0)]
     public float distanceOffset;
 
+    public float forceModifier = 1;
+    public float timeToThrow = 1;
+    public float throwHeight = 4;
 
-    private Fish catchedFish;
+    public float reelForce = 10f;
+    public float2 reelDirection = new float2(0.2f, 1f);
 
-    void Awake() {
+    [HideInInspector]
+    public bool inWater = false;
+    [HideInInspector]
+    public bool shouldReel = false;
+
+    private float force = 0;
+
+    private Vector3 startPoint;
+    private float2 fixedEndPoint;
+
+    private Fish fishOnHook;
+
+    private Rigidbody2D body;
+    private PhysicsEvents2D physicsEvents;
+
+    private void OnValidate()
+    {
         startPoint = transform.position;
     }
 
-    void OnDrawGizmos() {
-        if (!inWater && !released && math.length(holdDrag.Drag) <= 0) {
-            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.red);
-            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.black);
-            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.yellow);
-        }
+    void Awake() {
+        startPoint = transform.position;
+        TryGetComponent(out physicsEvents);
+        TryGetComponent(out body);
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
+    }
+
+    public void BeginFishing()
+    {
+        Reset();
     }
 
     void Start() {
-        TryGetComponent<PhysicsEvents2D>(out physicsEvents);
-
         physicsEvents.CollisionEnter += (collider) => {
-            if (collider.gameObject.TryGetComponent<FishSwimming>(out var fish)) {
-                if (!catchedFish) {
-                    fish.Catch(transform);
-                    catchedFish = fish.GetComponent<Fish>();
-                }
+
+            if (fishOnHook == null &&
+                collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
+                collider.gameObject.TryGetComponent<FishSwimming>(out var fish))
+            {
+                fish.Catch(transform);
+                gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
+                fishOnHook = fish.GetComponent<Fish>();
             }
         };
 
@@ -82,10 +79,16 @@ public class Bait : MonoBehaviour
             }
 
             if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
-                if (inWater) Reset();
-                if (catchedFish && fishingRod)  {
-                    fishCollect.CollectFish(catchedFish, fishingRod);
-                    catchedFish = null;
+                if (fishOnHook)
+                {
+                    Reset();
+                    fishCollect.CollectFish(fishOnHook);
+                    fishOnHook = null;
+                }
+                else if (inWater)
+                {
+                    ReelEnded?.Invoke();
+                    BeginFishing();
                 }
             }
         };  
@@ -97,82 +100,67 @@ public class Bait : MonoBehaviour
             }
         };  
 
-        TryGetComponent(out body);
         body.gravityScale = 0f;
-        holdDrag.StartDrag += () => { if (!inWater && !released) startDrag = true; };
-        holdDrag.Released += (drag) => { if (!inWater && !released && startDrag) Release(); startDrag = false; };
     }
 
     // Update is called once per frame
     void Update()
     {
-        force = math.length(holdDrag.Drag)*forceModifier;
-        if (!released && startDrag) {
+        if (Debugging) {
             float2 endPoint = EndPoint();
-            var direction = new float2(-force, force);
-            DebugDraw.Line(transform.position, (float3)transform.position + new float3(direction.x, direction.y, 0), Color.green);
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
-            transform.position = new Vector3(poleTip.position.x, transform.position.y, 0);
-        } else if (inWater){
-            if (shouldReel) {
-                Reel();
-            }
-            
+        }   
+       
+        if (inWater && shouldReel) {
+            Reel();
+        }
+    }
+
+    void OnDrawGizmos() {
+        if (!inWater && Debugging) {
+            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.red);
+            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.black);
+            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.yellow);
         }
     }
 
     public void Reset() {
         transform.position = startPoint;
         inWater = false;
-        released = false;
         body.gravityScale = 0f;
         body.velocity = Vector2.zero;
         body.angularVelocity = 0f;
         body.rotation = 0f;
         shouldReel = false;
     }
- 
+
+    public void ReleaseDrag() {
+        Release();
+    }
+
+
+    public void SetForce(float force) {
+        this.force = force*forceModifier;
+    }
+
     public void Reel() {
         body.AddForce(reelDirection*reelForce);
     }
 
     void Release() {
-        released = true;
         fixedEndPoint = EndPoint();
-        Released?.Invoke();
         StartCoroutine(MoveOverSeconds(gameObject, new Vector3(fixedEndPoint.x, fixedEndPoint.y, 0), timeToThrow));
     }
     
     float2 EndPoint() {
-
         var x = math.clamp((-force), maxDistance, minDistance);
         return new float2(x + distanceOffset + startPoint.x, startPoint.y);
     }
 
-    public void OnKeyPress(InputAction.CallbackContext context)
-    {
-        if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
-            context.action.phase == InputActionPhase.Performed)
-        {
-            TriggerPressed();
-        } else if (context.action.triggered && context.action.ReadValue<float>() == default &&
-            context.action.phase == InputActionPhase.Performed)
-        {
-            TriggerReleased();
-        }
-    }
-
-    public void TriggerPressed() {
-        shouldReel = true;
-    }
-
-    public void TriggerReleased() {
-        shouldReel = false;
-    }
-    
     public void setInWater() {
         HitWater?.Invoke();
         inWater = true;
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
     }
 
     public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)

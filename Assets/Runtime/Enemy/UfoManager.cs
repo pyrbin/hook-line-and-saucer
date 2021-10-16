@@ -41,7 +41,7 @@ public class UfoManager : MonoBehaviour
 
     public void Spawn()
     {
-        var point = GetRandomPointInsideCollider(SpawnArea);
+        var point = SpawnArea.GetRandomPointInsideCollider();
         var ufo = Instantiate(UfoPrefab, point, quaternion.identity, transform);
 
         Ufos.Add(ufo.GetComponent<Ufo>());
@@ -73,14 +73,6 @@ public class UfoManager : MonoBehaviour
             if (MaxUfoObjects > TotalUfos)
                 Spawn();
         }
-    }
-
-    float3 GetRandomPointInsideCollider(BoxCollider2D boxCollider)
-    {
-        var extents = boxCollider.size / 2f;
-        var point = new float2(UnityEngine.Random.Range(-extents.x, extents.x), UnityEngine.Random.Range(-extents.y, extents.y)) + (float2)boxCollider.offset;
-
-        return ((float3)boxCollider.transform.TransformPoint(new Vector3(point.x, point.y, 0)));
     }
 }
 

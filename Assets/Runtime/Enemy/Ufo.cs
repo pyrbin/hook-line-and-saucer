@@ -18,9 +18,21 @@ public class Ufo : MonoBehaviour
     public float AttackTime;
     public GameObject ProjectilePrefab;
 
+    public SpriteRenderer Renderer;
+
+    public ParticleSystem Explosions;
+
     [Space]
     public bool Debugging = true;
     public bool Sleeping = false;
+
+#if UNITY_EDITOR
+    [NaughtyAttributes.Button("Test Death")]
+    public void TestDeath()
+    {
+        Health?.Damage(Health.Value);
+    }
+#endif
 
     [NaughtyAttributes.ReadOnly]
     public House Target;
@@ -56,7 +68,19 @@ public class Ufo : MonoBehaviour
 
         Health.OnDeath += () =>
         {
-            Destroy(this.gameObject);
+            Sleeping = true;
+
+            Explosions.Play();
+
+            Timers.SetTimeout(800, () =>
+            {
+                Renderer.enabled = false;
+            });
+
+            Timers.SetTimeout(1500, () =>
+            {
+                Destroy(this.gameObject);
+            });
         };
     }
 
@@ -88,7 +112,14 @@ public class Ufo : MonoBehaviour
         if (Target)
         {
             PursueTarget();
-        } else {
+        }
+        else
+        {
+            if (UfoManager.instance == null)
+            {
+                Sleeping = true; return;
+            }
+
             Target = UfoManager.instance.GetNewTarget();
 
             cacheTargetPos = Target.transform.position;

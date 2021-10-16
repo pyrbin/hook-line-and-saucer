@@ -26,15 +26,28 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 
     Rigidbody2D Body;
 
-    Fish Parent;
+    [HideInInspector]
+    public Fish Parent;
 
     public bool doDamage = false;
 
     void Awake()
     {
-#if !UNITY_EDITOR
-        ValidateData();
-#endif
+        if (Body == null)
+            ValidateData();
+
+        Parent.PhysicsEvents.TriggerEnter += (col) =>
+        {
+            if (col.gameObject.tag == "FishDeath")
+            {
+                ScheduleDespawn();
+            }
+            if (col.gameObject.tag == "FishStop")
+            {
+                Body.velocity = float2.zero;
+            }
+        };
+
         ExitState();
     }
 
@@ -53,10 +66,11 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         return dir.xy * len * Parent.Stats.SpeedMult;
     }
 
-    public void ScheduleDespawn(int timeInsMs = 1000)
+    public void ScheduleDespawn(int timeInsMs = 300)
     {
         if (!IsActive) return;
 
+        Body.velocity = float2.zero;
         Body.isKinematic = true;
 
         gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = false);
