@@ -29,6 +29,5 @@ public class GameManager : MonoBehaviour
     void StartFishing() {
         StartedFishing?.Invoke();
         player.StartFishing();
-
     }
 }

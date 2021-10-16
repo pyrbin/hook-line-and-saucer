@@ -24,7 +24,7 @@ public class PlayerThrowFish : MonoBehaviour
     {
         HoldDrag.Released += (_) =>
         {
-            if (Fish)
+            if (Fish && math.length(HoldDrag.Drag) > math.EPSILON)
                 Fish.ApplyForce(new float3(Force, 0));
         };
     }

@@ -11,6 +11,8 @@ public class Bait : MonoBehaviour
 
     public event Action HitWater;
 
+    public bool Debugging = true;
+
     [Range(-20, 0)]
     public float maxDistance = 10;
     [Range(-20, 0)]
@@ -24,15 +26,11 @@ public class Bait : MonoBehaviour
 
     public float reelForce = 10f;
     public float2 reelDirection = new float2(0.2f, 1f);
-    
-    [HideInInspector]
-    public bool released = false;
+
     [HideInInspector]
     public bool inWater = false;
     [HideInInspector]
     public bool shouldReel = false;
-    [HideInInspector]
-    public bool isDragging = false;
 
     private float force = 0;
 
@@ -46,20 +44,11 @@ public class Bait : MonoBehaviour
 
     void Awake() {
         startPoint = transform.position;
-    }
-
-    void OnDrawGizmos() {
-        if (!inWater && !released && force <= 0) {
-            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.red);
-            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.black);
-            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.yellow);
-        }
+        TryGetComponent<PhysicsEvents2D>(out physicsEvents);
+        TryGetComponent(out body);
     }
 
     void Start() {
-        TryGetComponent<PhysicsEvents2D>(out physicsEvents);
-        TryGetComponent(out body);
-
         physicsEvents.CollisionEnter += (collider) => {
             if (collider.gameObject.TryGetComponent<FishSwimming>(out var fish)) {
                 if (!catchedFish) {
@@ -81,7 +70,7 @@ public class Bait : MonoBehaviour
                 if (catchedFish)  {
                     fishCollect.CollectFish(catchedFish);
                     catchedFish = null;
-                }
+                } 
             }
         };  
 
@@ -95,42 +84,30 @@ public class Bait : MonoBehaviour
         body.gravityScale = 0f;
     }
 
-    public void StartDrag() {
-        if (!inWater && !released)
-            isDragging = true;
-        shouldReel = true;
-    }
-
-    public void ReleaseDrag() {
-        if (!inWater && !released && isDragging)
-            Release();
-        isDragging = false;
-        shouldReel = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (!released && isDragging) {
+        if (Debugging) {
             float2 endPoint = EndPoint();
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
-
-        } else if (inWater){
-            if (shouldReel) {
-                Reel();
-            }
-            
+        }   
+       
+        if (inWater && shouldReel) {
+            Reel();
         }
     }
 
-    public void SetForce(float force) {
-        this.force = force*forceModifier;
+    void OnDrawGizmos() {
+        if (!inWater && Debugging) {
+            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.red);
+            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.black);
+            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.yellow);
+        }
     }
 
     public void Reset() {
         transform.position = startPoint;
         inWater = false;
-        released = false;
         body.gravityScale = 0f;
         body.velocity = Vector2.zero;
         body.angularVelocity = 0f;
@@ -139,12 +116,20 @@ public class Bait : MonoBehaviour
         gameObject.SetLayerRecursively(11);
     }
  
+    public void ReleaseDrag() {
+        Release();
+    }
+
+
+    public void SetForce(float force) {
+        this.force = force*forceModifier;
+    }
+
     public void Reel() {
         body.AddForce(reelDirection*reelForce);
     }
 
     void Release() {
-        released = true;
         fixedEndPoint = EndPoint();
         StartCoroutine(MoveOverSeconds(gameObject, new Vector3(fixedEndPoint.x, fixedEndPoint.y, 0), timeToThrow));
     }
