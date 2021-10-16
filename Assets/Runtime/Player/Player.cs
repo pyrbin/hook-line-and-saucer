@@ -20,20 +20,22 @@ public class Player : MonoBehaviour
     }
 
     public void StartThrowFish(Fish fish) {
-
-        var fishSwimming = fish.gameObject.GetComponent<FishSwimming>();
+        var fishSwimming = fish.gameObject.GetComponent<FishSwimming>();       
         fishSwimming.RemoveHook();
         fish.SetState(FishState.Projectile);
-        
+
         throwFish.Fish = fish.GetComponent<FishProjectile>();
+        holdDrag.Enable();
         holdDrag.Max = throwFish.dragMax;
 
         fishingRod.Reset();
         fishingRod.locked = true;
     }
 
-    internal void StartFishing()
+    public void StartFishing()
     {
+        fishingRod.Reset();
+        holdDrag.Enable();
         holdDrag.Max = fishingRod.dragMax;
         fishingRod.locked = false;
     }

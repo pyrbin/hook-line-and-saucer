@@ -10,6 +10,20 @@ public class Health : MonoBehaviour
     public float Factor => ((float)currentHealth / (float)maxHealth);
     public bool Empty => Current <= 0;
 
+#if UNITY_EDITOR
+    [NaughtyAttributes.Button("Test Damage 1")]
+    public void TestDamage()
+    {
+        Damage(1);
+    }
+
+    [NaughtyAttributes.Button("Reset values")]
+    public void ResetValues()
+    {
+        ValidateData();
+    }
+#endif
+
     [NaughtyAttributes.ShowNonSerializedField()]
     private ushort currentHealth = 0;
 

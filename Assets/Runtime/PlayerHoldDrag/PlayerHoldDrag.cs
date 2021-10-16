@@ -24,8 +24,13 @@ public class PlayerHoldDrag : MonoBehaviour
 
     private bool recording;
 
+    private bool locked = false;
+
+    private bool hasPressed = false;
+
     public void OnKeyPress(InputAction.CallbackContext context)
     {
+        if (locked) return;
         if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
             context.action.phase == InputActionPhase.Performed)
         {
@@ -33,6 +38,7 @@ public class PlayerHoldDrag : MonoBehaviour
         } else if (context.action.triggered && context.action.ReadValue<float>() == default &&
             context.action.phase == InputActionPhase.Performed)
         {
+            if (!recording) return;
             TriggerReleased();
         }
     }
@@ -84,5 +90,13 @@ public class PlayerHoldDrag : MonoBehaviour
             DebugDraw.Circle(DragPointsInWorld.Origin, 0.25f, Color.cyan);
             DebugDraw.Circle(DragPointsInWorld.Current, 0.25f, Color.red);
         }
+    }
+
+    public void Disable() {
+        locked = true;
+    }
+    
+    public void Enable() {
+        locked = false;
     }
 }

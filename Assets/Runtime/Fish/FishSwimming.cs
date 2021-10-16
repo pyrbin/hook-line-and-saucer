@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
     bool shouldSwim = false;
 
     private Transform hook;
+    
+    public event Action Catched;
 
     void Awake()
     {
@@ -81,6 +84,7 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
 
     public void Catch(Transform hook)
     {
+        Catched?.Invoke();
         gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = false);
         this.hook = hook;
         shouldSwim = false;
