@@ -25,10 +25,11 @@ public class Player : MonoBehaviour
         fish.SetState(FishState.Projectile);
 
         throwFish.Fish = fish.GetComponent<FishProjectile>();
+        throwFish.hasNotThrown = true;
+
         holdDrag.Enable();
         holdDrag.Max = throwFish.dragMax;
 
-        fishingRod.Reset();
         fishingRod.locked = true;
     }
 

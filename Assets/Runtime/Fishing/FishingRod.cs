@@ -56,9 +56,8 @@ public class FishingRod : MonoBehaviour
 
     public void Reset() {
         pole.setRotation(0);
-        bait.Reset();
+        bait.BeginFishing();
     }
-
 
     // Update is called once per frame
     void Update()

@@ -195,6 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866bd8c95c269d042960d907c9b6c2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdDrag: {fileID: 0}
-  throwFish: {fileID: 0}
-  fishingRod: {fileID: 0}
+  holdDrag: {fileID: 5904256521864343446}
+  throwFish: {fileID: 5904256521864343440}
+  fishingRod: {fileID: 5904256521864343444}

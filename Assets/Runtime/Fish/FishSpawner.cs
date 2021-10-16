@@ -10,7 +10,7 @@ public class FishSpawner : MonoBehaviour
     public List<GameObject> Prefabs;
 
     public int MaxFishes = 5;
-    public float SpawnRate = 2;
+    public float2 SpawnRateRange = new(1.53f,3.23f);
 
     public int TotalFishes => Fishes.Count;
 
@@ -61,7 +61,7 @@ public class FishSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(SpawnRate);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(SpawnRateRange.x, SpawnRateRange.y));
 
             if (MaxFishes > TotalFishes)
                 Spawn();

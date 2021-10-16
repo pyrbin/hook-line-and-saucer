@@ -53,12 +53,20 @@ public class Bait : MonoBehaviour
         TryGetComponent(out body);
     }
 
+    public void BeginFishing()
+    {
+        Reset();
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
+    }
+
     void Start() {
         physicsEvents.CollisionEnter += (collider) => {
-            if (collider.gameObject.TryGetComponent<FishSwimming>(out var fish)) {
+            if (collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
+                collider.gameObject.TryGetComponent<FishSwimming>(out var fish))
+            {
                 if (!catchedFish) {
                     fish.Catch(transform);
-                    gameObject.SetLayerRecursively(12);
+                    gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
                     catchedFish = fish.GetComponent<Fish>();
                 }
             }
@@ -71,16 +79,17 @@ public class Bait : MonoBehaviour
             }
 
             if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
-                if (inWater)
+                if (catchedFish)
                 {
                     Reset();
-                    ReelEnded?.Invoke();
-                    return;
-                }
-                if (catchedFish)  {
                     fishCollect.CollectFish(catchedFish);
                     catchedFish = null;
-                } 
+                }
+                else if (inWater)
+                {
+                    ReelEnded?.Invoke();
+                    BeginFishing();
+                }
             }
         };  
 
@@ -123,9 +132,8 @@ public class Bait : MonoBehaviour
         body.angularVelocity = 0f;
         body.rotation = 0f;
         shouldReel = false;
-        gameObject.SetLayerRecursively(11);
     }
- 
+
     public void ReleaseDrag() {
         Release();
     }

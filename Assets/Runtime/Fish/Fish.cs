@@ -72,7 +72,10 @@ public class Fish : MonoBehaviour
     {
         Despawned?.Invoke(Stats);
 
-        Timers.SetTimeout(300, () => Destroy(this.gameObject));
+        Timers.SetTimeout(300, () => {
+            FishSpawner.instance.RemoveSelf(this);
+            Destroy(this.gameObject);
+        });
     }
 
     public void SetState(FishState state)

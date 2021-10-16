@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -18,14 +17,26 @@ public class PlayerThrowFish : MonoBehaviour
 
     public int dragMax = 50;
 
+    public event Action FirstThrow;
+
     public float2 Force => HoldDrag.Drag * (1f - Dampening);
+
+    [HideInInspector]
+    public bool hasNotThrown = true;
 
     void Start()
     {
         HoldDrag.Released += (_) =>
         {
             if (Fish && math.length(HoldDrag.Drag) > math.EPSILON)
+            {
                 Fish.ApplyForce(new float3(Force, 0));
+                if (hasNotThrown)
+                {
+                    FirstThrow?.Invoke();
+                    hasNotThrown = false;
+                }
+            }
         };
     }
 
