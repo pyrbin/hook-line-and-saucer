@@ -10,20 +10,6 @@ public class House : MonoBehaviour
 
     public SpriteMask Mask;
 
-#if UNITY_EDITOR
-    [NaughtyAttributes.Button("Test Damage 1")]
-    public void TestDamage()
-    {
-        Health.Damage(1);
-    }
-
-    [NaughtyAttributes.Button("Reset")]
-    public void Reset()
-    {
-        ValidateData();
-    }
-#endif
-
     [HideInInspector]
     public Health Health;
 
