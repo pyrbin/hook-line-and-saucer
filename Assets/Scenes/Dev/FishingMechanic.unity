@@ -1064,8 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b0e59f4240194cbd5dc1b3186e13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishCollectArea: {fileID: 0}
-  fishProjectilePosition: {fileID: 0}
+  fishCollectArea: {fileID: 2042707363}
+  fishProjectilePosition: {fileID: 81358370}
   player: {fileID: 403052135}
 --- !u!4 &789692004
 Transform:
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7612870399b758e40a314fc77055627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragToRotationModifier: 0.2
+  dragToRotationModifier: 0.1
   minRotation: 0
   maxRotation: 90
 --- !u!1 &1393606782

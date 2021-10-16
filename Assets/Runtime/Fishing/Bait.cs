@@ -64,6 +64,7 @@ public class Bait : MonoBehaviour
             if (collider.gameObject.TryGetComponent<FishSwimming>(out var fish)) {
                 if (!catchedFish) {
                     fish.Catch(transform);
+                    gameObject.SetLayerRecursively(12);
                     catchedFish = fish.GetComponent<Fish>();
                 }
             }
@@ -135,6 +136,7 @@ public class Bait : MonoBehaviour
         body.angularVelocity = 0f;
         body.rotation = 0f;
         shouldReel = false;
+        gameObject.SetLayerRecursively(11);
     }
  
     public void Reel() {
