@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class Bait : MonoBehaviour
 {
 
-    public event Action Landed;
+    public event Action HitWater;
+    public event Action Released;
 
     public float forceModifier = 1;
     public float timeToThrow = 10;
@@ -17,25 +18,37 @@ public class Bait : MonoBehaviour
 
     [SerializeField]
     private float force;
-    private bool released = false;
+    public bool released = false;
     public bool inWater = false;
 
     public float reelForce = 10f;
     public float2 reelDirection = new float2(0.2f, 1f);
 
-    PlayerHoldDrag holdDrag;
+    public PlayerHoldDrag holdDrag;
     public Rigidbody2D body;
 
     Vector3 startPoint;
     float2 fixedEndPoint;
 
     public bool shouldReel = false;
-
-
     private bool startDrag = false;
 
+    [Range(-20, 0)]
+    public float maxDistance = 10;
+    [Range(-20, 0)]
+    public float minDistance = 3;
+    [Range(-20, 0)]
+    public float distanceOffset;
+
+    void OnDrawGizmos() {
+        if (!inWater && !released) {
+            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + transform.position, new Vector3(0,0,1), 0.4f, Color.red);
+            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.4f, Color.black);
+            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.4f, Color.yellow);
+        }
+    }
+
     void Start() {
-        TryGetComponent(out holdDrag);
         TryGetComponent(out body);
         startPoint = transform.position;
         body.gravityScale = 0f;
@@ -77,11 +90,14 @@ public class Bait : MonoBehaviour
     void Release() {
         released = true;
         fixedEndPoint = EndPoint();
+        Released?.Invoke();
         StartCoroutine(MoveOverSeconds(gameObject, new Vector3(fixedEndPoint.x, fixedEndPoint.y, 0), timeToThrow));
     }
     
     float2 EndPoint() {
-        return new float2(-force + transform.position.x, transform.position.y);
+
+        var x = math.clamp((-force), maxDistance, minDistance);
+        return new float2(x + distanceOffset + transform.position.x, transform.position.y);
     }
 
     public void OnKeyPress(InputAction.CallbackContext context)
@@ -106,6 +122,7 @@ public class Bait : MonoBehaviour
     }
     
     public void setInWater() {
+        HitWater?.Invoke();
         inWater = true;
     }
 
@@ -115,8 +132,8 @@ public class Bait : MonoBehaviour
         Vector3 startingPos = objectToMove.transform.position;
         while (elapsedTime < seconds)
         {
-            var x = Mathf.Lerp(startingPos.x, end.x, (elapsedTime / seconds));
-            var y = Mathf.Sin(Mathf.Lerp(0, Mathf.PI, (elapsedTime / seconds)))*4;
+            var x = Mathf.SmoothStep(startingPos.x, end.x, (elapsedTime / seconds));
+            var y = Mathf.Sin(Mathf.SmoothStep(0, Mathf.PI, (elapsedTime / seconds)))*8;
             objectToMove.transform.position = new Vector3(x, startingPos.y + y, 0);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
