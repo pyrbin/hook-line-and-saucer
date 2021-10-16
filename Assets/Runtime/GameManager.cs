@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Transform fishProjectilePosition;
     public CameraManager cameraManager;
     public PlayerThrowFish playerThrowFish;
+    public DragPower dragPower;
+    public HUDManager hudManager;
 
     public Player player;    
 
@@ -19,12 +21,15 @@ public class GameManager : MonoBehaviour
     {
         StartedFishing += () =>
         {
+            hudManager.powerBar.gameObject.SetActive(false);
             cameraManager.GoToFishing();
             player.StartFishing();
         };
 
         StartedThrowFish += () =>
-        {
+        {     
+            hudManager.powerBar.gameObject.SetActive(true);
+            dragPower.Activate();
             cameraManager.GoToOverview();
         };
 
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
 
         playerThrowFish.FirstThrow += () =>
         {
+
             cameraManager.GoToTracking(playerThrowFish.Fish.gameObject.transform);
             playerThrowFish.Fish.Parent.Despawned += (stats) =>
             {
