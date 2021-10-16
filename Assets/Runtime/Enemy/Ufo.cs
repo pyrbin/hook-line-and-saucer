@@ -9,6 +9,7 @@ public class Ufo : MonoBehaviour
     [Header("Movement")]
     public float Speed = 1.0f;
     public float2 SpeedRandom = new (0.8f, 1.5f);
+    public float XRandom = 2f;
 
     [Header("Range")]
     public float AttackRange = 2;
@@ -72,6 +73,8 @@ public class Ufo : MonoBehaviour
 
             Explosions.Play();
 
+            gameObject.ForEachComponentInChildren<Collider2D>(x => x.enabled = false);
+
             Timers.SetTimeout(800, () =>
             {
                 Renderer.enabled = false;
@@ -109,21 +112,26 @@ public class Ufo : MonoBehaviour
 
         if (Sleeping) return;
 
+        if (UfoManager.instance == null)
+        {
+            Sleeping = true;
+            return;
+        }
+
         if (Target)
         {
             PursueTarget();
         }
         else
         {
-            if (UfoManager.instance == null)
-            {
-                Sleeping = true; return;
-            }
 
             Target = UfoManager.instance.GetNewTarget();
 
             cacheTargetPos = Target.transform.position;
-            cacheTargetPos.x += UnityEngine.Random.Range(-1, 1f);
+            cacheTargetPos.x += UnityEngine.Random.Range(-XRandom, XRandom);
+
+            var middle = Target.GetComponentInChildren<Collider2D>().ClosestPoint(new float2(Target.transform.position.x, 99999));
+            cacheTargetPos.y = middle.y + AttackRange;
 
             Target.Health.OnDeath += () =>
             {
@@ -139,13 +147,11 @@ public class Ufo : MonoBehaviour
 
     void PursueTarget()
     {
-        var targetPos = CalculateTargetPos();
-
-        if (math.distance(transform.position, targetPos) <= math.EPSILON && ScanTarget())
+        if (math.distance(transform.position, cacheTargetPos) <= math.EPSILON)
         {
             Attack();
         } else {
-            Move(targetPos);
+            Move(cacheTargetPos);
         }
     }
 
@@ -175,51 +181,6 @@ public class Ufo : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, pos, step);
         if (Debugging)
             Debug.DrawLine(transform.position, pos, Color.green);
-    }
-
-    bool ScanTarget()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector3.down, math.INFINITY, LayerMask.GetMask("House"));
-        return hit.collider != null ? hit.collider.gameObject : null == Target?.gameObject;
-    }
-
-    void AvoidanceLogic()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector3.down, math.INFINITY, LayerMask.GetMask("Ufo"));
-
-        if (hit.collider != null)
-        {
-            var other = hit.collider?.GetComponent<Ufo>();
-
-            if (other && other.Target == Target && math.abs(other.AttackRange - AttackRange) <= 0.5)
-            {
-                AttackRange = math.max(1, AttackRange + ((UnityEngine.Random.Range(0, 1f) > 0.5f) ? 1 : -1f));
-            }
-        }
-    }
-
-    float3 CalculateTargetPos()
-    {
-        AvoidanceLogic();
-
-        var yoffset = transform.position.y;
-        var origin = new float2(cacheTargetPos.x, cacheTargetPos.y + AttackRange * 2);
-        var hit = Physics2D.Raycast(origin, Vector3.down, math.INFINITY, LayerMask.GetMask("House"));
-
-        if (hit.collider?.GetComponentInParent<House>() == Target)
-        {
-            yoffset = math.max(hit.point.y, hit.point.y + AttackRange);
-
-            if (Debugging)
-            {
-                Debug.DrawLine(transform.position, hit.collider.transform.position);
-                Debug.DrawLine(hit.point, hit.point + new Vector2(0, AttackRange));
-            }
-        }
-
-        var targetPos = new float3(cacheTargetPos.x, yoffset, 0f);
-
-        return targetPos;
     }
 }
 

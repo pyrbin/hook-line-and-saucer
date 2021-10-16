@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3674249750534805483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -280,14 +280,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa42fc0e6e71e142b38cbc445e0fd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 1
   SpeedRandom:
     x: 0.8
     y: 1.5
+  XRandom: 3.5
   AttackRange: 6
   AttackRangeRandom:
-    x: 0.8
-    y: 1.5
+    x: 0.7
+    y: 2
   AttackTime: 2
   ProjectilePrefab: {fileID: 6880988547731118312, guid: 1cde3c960c26e044cadcecb876f3c5fd, type: 3}
   Renderer: {fileID: 3674249751055297269}

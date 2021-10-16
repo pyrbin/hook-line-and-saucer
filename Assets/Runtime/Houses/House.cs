@@ -13,6 +13,14 @@ public class House : MonoBehaviour
     [HideInInspector]
     public Health Health;
 
+#if UNITY_EDITOR
+    [NaughtyAttributes.Button("Validate Data")]
+    public void ValidateDataButton()
+    {
+        ValidateData();
+    }
+#endif
+
     void OnValidate()
     {
         ValidateData();
