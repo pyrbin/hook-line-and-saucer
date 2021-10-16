@@ -4,10 +4,11 @@ using UnityEngine;
 using Unity.Mathematics;
 public class Pole : MonoBehaviour
 {
-
     public float dragToRotationModifier = 0.3f;
     public float minRotation = 0;
     public float maxRotation = 120;
+
+    public SpriteRenderer PoleSprite;
 
     public void setRotation(float angle) {
         var a = math.clamp(angle*dragToRotationModifier, minRotation, maxRotation);

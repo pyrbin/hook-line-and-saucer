@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class FishCollectArea : MonoBehaviour
 {
-
     public Action<Fish> FishCollected;
 
     public void CollectFish(Fish fish) {
-        FishCollected?.Invoke(fish);
+        if (fish != null)
+            FishCollected?.Invoke(fish);
     }
 }

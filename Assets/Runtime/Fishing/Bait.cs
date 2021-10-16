@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 
 public class Bait : MonoBehaviour
 {
-
     public event Action HitWater;
+    public event Action ReelEnded;
 
     public bool Debugging = true;
 
@@ -42,9 +42,14 @@ public class Bait : MonoBehaviour
     private Rigidbody2D body;
     private PhysicsEvents2D physicsEvents;
 
+    private void OnValidate()
+    {
+        startPoint = transform.position;
+    }
+
     void Awake() {
         startPoint = transform.position;
-        TryGetComponent<PhysicsEvents2D>(out physicsEvents);
+        TryGetComponent(out physicsEvents);
         TryGetComponent(out body);
     }
 
@@ -66,7 +71,12 @@ public class Bait : MonoBehaviour
             }
 
             if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
-                if (inWater) Reset();
+                if (inWater)
+                {
+                    Reset();
+                    ReelEnded?.Invoke();
+                    return;
+                }
                 if (catchedFish)  {
                     fishCollect.CollectFish(catchedFish);
                     catchedFish = null;
@@ -99,9 +109,9 @@ public class Bait : MonoBehaviour
 
     void OnDrawGizmos() {
         if (!inWater && Debugging) {
-            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.red);
-            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.black);
-            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + transform.position, new Vector3(0,0,1), 0.2f, Color.yellow);
+            DebugDraw.Circle(new Vector3(maxDistance + distanceOffset , 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.red);
+            DebugDraw.Circle(new Vector3(minDistance + distanceOffset, 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.black);
+            DebugDraw.Circle(new Vector3(distanceOffset, 0, 0) + startPoint, new Vector3(0,0,1), 0.2f, Color.yellow);
         }
     }
 

@@ -76,25 +76,21 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e25db530-f697-4c26-8f40-0748c6571a6e
-    m_ActionName: Player/Move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 01120e79-3053-4d43-a9fe-34368c40fdef
-    m_ActionName: Player/Look[/SwitchProControllerHID/rightStick,/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cee36fd1-9e77-45f5-82f3-67cff81ba4bc
-    m_ActionName: Player/Fire[/SwitchProControllerHID/rightTrigger,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3e369f7e-f7c0-45b4-a1a6-7abf1e1b8614
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5904256521864343446}
         m_TargetAssemblyTypeName: PlayerHoldDrag, Assembly-CSharp
+        m_MethodName: OnKeyPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5904256521864343444}
+        m_TargetAssemblyTypeName: FishingRod, Assembly-CSharp
         m_MethodName: OnKeyPress
         m_Mode: 0
         m_Arguments:

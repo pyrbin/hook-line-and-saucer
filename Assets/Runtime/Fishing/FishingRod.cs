@@ -15,27 +15,43 @@ public class FishingRod : MonoBehaviour
 
     public int dragMax = 400;
 
-
     void Awake() {
+
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        TryGetComponent(out holdDrag);
+
+        holdDrag.StartDrag += () =>
+        {
+            if (!locked)
+            {
+                //pole.PoleSprite.flipX = true;
+            }
+        };
+
         holdDrag.Released += (drag) => {
             if (!locked) {
                 locked = true;
+                //pole.PoleSprite.flipX = false;
                 holdDrag.Disable();   
                 bait.ReleaseDrag();
-                if (!bait.inWater) StartCoroutine(pole.AngleOverSeconds(60, 0.2f));
+                if (!bait.inWater)
+                    StartCoroutine(pole.AngleOverSeconds(60, 0.2f));
             }
         };
 
         bait.HitWater += () =>  {
             pole.transform.rotation = Quaternion.Euler(0,0, 60);
         };
- 
-        TryGetComponent(out holdDrag);
+
+        bait.ReelEnded += () =>
+        {
+            Reset();
+            locked = false;
+            holdDrag.Enable();
+        };
     }
 
     public void Reset() {
@@ -56,7 +72,7 @@ public class FishingRod : MonoBehaviour
         }
 
         if(holdDrag.IsDragging) {
-            bait.transform.position = new Vector3(poleTip.position.x, transform.position.y, 0);
+            bait.transform.position = new Vector3(poleTip.position.x, bait.transform.position.y, 0);
         }
     }
 
