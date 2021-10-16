@@ -10,10 +10,13 @@ public class PlayerThrowFish : MonoBehaviour
 
     public bool Debugging = false;
 
+
     [Space]
     public PlayerHoldDrag HoldDrag;
 
     public FishProjectile Fish;
+
+    public int dragMax = 50;
 
     public float2 Force => HoldDrag.Drag * (1f - Dampening);
 

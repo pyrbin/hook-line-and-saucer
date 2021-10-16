@@ -204,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81358369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.96, y: 1.31, z: 0}
+  m_LocalPosition: {x: -2.15, y: -0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,9 +364,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259633378}
-  - component: {fileID: 259633380}
-  - component: {fileID: 259633379}
-  - component: {fileID: 259633381}
   m_Layer: 0
   m_Name: Fishing Rod
   m_TagString: Untagged
@@ -392,148 +389,6 @@ Transform:
   m_Father: {fileID: 128868501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &259633379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259633375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b086b09d166c00c4087b0a86c56788a5, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e25db530-f697-4c26-8f40-0748c6571a6e
-    m_ActionName: Player/Move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 01120e79-3053-4d43-a9fe-34368c40fdef
-    m_ActionName: Player/Look[/SwitchProControllerHID/rightStick,/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cee36fd1-9e77-45f5-82f3-67cff81ba4bc
-    m_ActionName: Player/Fire[/SwitchProControllerHID/rightTrigger,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3e369f7e-f7c0-45b4-a1a6-7abf1e1b8614
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 259633380}
-        m_TargetAssemblyTypeName: PlayerHoldDrag, Assembly-CSharp
-        m_MethodName: OnKeyPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1169323135}
-        m_TargetAssemblyTypeName: Bait, Assembly-CSharp
-        m_MethodName: OnKeyPress
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 91325788-153c-4e2a-8a5b-60ece9a473f0
-    m_ActionName: Player/Hold[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 14ff9a59-e0e7-4061-a7b2-f9f2e388f05e
-    m_ActionName: UI/Navigate[/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/rightStick/up,/SwitchProControllerHID/leftStick/down,/SwitchProControllerHID/rightStick/down,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/rightStick/left,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/rightStick/right,/SwitchProControllerHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c7d348ed-5833-4b4b-9fc7-21350c1f3fda
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f86af7a0-be29-4852-bb6d-bc7be27adad3
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bd8f8933-6bf1-4326-acc4-73141f64e619
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 46036c9c-ffc8-4109-814e-269c556298d2
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9c58b7d8-498e-438f-8439-481d8098f76c
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ab36b410-38e8-42aa-b9d7-129136ca3a8e
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4f204f64-b1f5-4e55-9e10-8f8494a070a5
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 71dec7ea-35d4-45ba-8025-819059781fbd
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3e2c35d9-6b4a-497a-a60f-0988693299ba
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &259633380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259633375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdb21407ee97a74e8303346264a4c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Max: 500
-  Debugging: 1
---- !u!114 &259633381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259633375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fbfccac848f1b44867c580ff6ffcf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bait: {fileID: 1169323135}
-  pole: {fileID: 1365694760}
 --- !u!1 &289828727
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +522,8 @@ GameObject:
   - component: {fileID: 403052132}
   - component: {fileID: 403052131}
   - component: {fileID: 403052130}
+  - component: {fileID: 403052134}
+  - component: {fileID: 403052135}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -688,8 +545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dampening: 0.933
   Debugging: 0
-  HoldDrag: {fileID: 0}
+  HoldDrag: {fileID: 403052132}
   Fish: {fileID: 0}
+  dragMax: 50
 --- !u!114 &403052131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: b086b09d166c00c4087b0a86c56788a5, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -714,7 +572,79 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e25db530-f697-4c26-8f40-0748c6571a6e
+    m_ActionName: Player/Move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01120e79-3053-4d43-a9fe-34368c40fdef
+    m_ActionName: Player/Look[/SwitchProControllerHID/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cee36fd1-9e77-45f5-82f3-67cff81ba4bc
+    m_ActionName: Player/Fire[/SwitchProControllerHID/rightTrigger,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e369f7e-f7c0-45b4-a1a6-7abf1e1b8614
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 403052132}
+        m_TargetAssemblyTypeName: PlayerHoldDrag, Assembly-CSharp
+        m_MethodName: OnKeyPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 91325788-153c-4e2a-8a5b-60ece9a473f0
+    m_ActionName: Player/Hold[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14ff9a59-e0e7-4061-a7b2-f9f2e388f05e
+    m_ActionName: UI/Navigate[/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/rightStick/up,/SwitchProControllerHID/leftStick/down,/SwitchProControllerHID/rightStick/down,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/rightStick/left,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/rightStick/right,/SwitchProControllerHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7d348ed-5833-4b4b-9fc7-21350c1f3fda
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f86af7a0-be29-4852-bb6d-bc7be27adad3
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bd8f8933-6bf1-4326-acc4-73141f64e619
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46036c9c-ffc8-4109-814e-269c556298d2
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c58b7d8-498e-438f-8439-481d8098f76c
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab36b410-38e8-42aa-b9d7-129136ca3a8e
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f204f64-b1f5-4e55-9e10-8f8494a070a5
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 71dec7ea-35d4-45ba-8025-819059781fbd
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e2c35d9-6b4a-497a-a60f-0988693299ba
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -749,6 +679,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &403052134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403052129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbfccac848f1b44867c580ff6ffcf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bait: {fileID: 1169323135}
+  pole: {fileID: 1365694760}
+  holdDrag: {fileID: 403052132}
+  poleTip: {fileID: 2060317275}
+  locked: 0
+  dragMax: 400
+--- !u!114 &403052135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403052129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866bd8c95c269d042960d907c9b6c2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDrag: {fileID: 0}
+  throwFish: {fileID: 0}
+  fishingRod: {fileID: 0}
 --- !u!4 &437454146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 57358328306397645, guid: 2817a986e16b34f46a65a18f8ebd13ab, type: 3}
@@ -981,7 +944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752806043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11, y: 0.51, z: 0.11174704}
+  m_LocalPosition: {x: -0.04, y: 0.54, z: 0.11174704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1101,8 +1064,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b0e59f4240194cbd5dc1b3186e13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishCollect: {fileID: 2042707363}
-  fishCollectedPosition: {fileID: 81358370}
+  fishCollectArea: {fileID: 0}
+  fishProjectilePosition: {fileID: 0}
+  player: {fileID: 403052135}
 --- !u!4 &789692004
 Transform:
   m_ObjectHideFlags: 0
@@ -1369,25 +1333,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20025f1486e5a3d4998bc409ddababf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: -5.43
+  minDistance: -0.61
+  distanceOffset: -1.86
   forceModifier: 0.1
   timeToThrow: 1
   throwHeight: 4
-  force: 0
-  released: 0
-  inWater: 0
   reelForce: 2
   reelDirection:
     x: 0.01
     y: 1
-  holdDrag: {fileID: 259633380}
-  body: {fileID: 0}
-  poleTip: {fileID: 2060317275}
-  physicsEvents: {fileID: 0}
-  fishingRod: {fileID: 0}
+  released: 0
+  inWater: 0
   shouldReel: 0
-  maxDistance: -5.43
-  minDistance: -0.61
-  distanceOffset: -1.86
+  isDragging: 0
 --- !u!212 &1169323136
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1448,8 +1407,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169323134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.19, y: -1.93, z: -0.11174704}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.0099, y: -1.5976, z: -0.1117}
+  m_LocalScale: {x: 0.5246, y: 0.5246, z: 0.5246}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 752806044}
@@ -1476,7 +1435,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1169323141
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1650,11 +1609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7612870399b758e40a314fc77055627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdDrag: {fileID: 259633380}
   dragToRotationModifier: 0.2
   minRotation: 0
   maxRotation: 90
-  poleBase: {fileID: 289828728}
 --- !u!1 &1393606782
 GameObject:
   m_ObjectHideFlags: 0
