@@ -42,11 +42,13 @@ public class Bait : MonoBehaviour
 
     private Vector3 startPoint;
 
-    private Fish fishOnHook;
+    public Fish fishOnHook;
 
     private Rigidbody2D body;
 
     private PhysicsEvents2D physicsEvents;
+
+    private FishCollectArea fishCollectArea;
 
     private float2 EndPoint => new float2(math.clamp((-force), maxDistance, minDistance) + distanceOffset + startPoint.x, startPoint.y);
 
@@ -75,17 +77,33 @@ public class Bait : MonoBehaviour
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
     }
 
+
+    public void CatchFish(FishSwimming fish) {
+        Debug.Log("Catched!");
+        fish.Catch(transform);
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
+        fishOnHook = fish.GetComponent<Fish>();
+    }
+
+
+
+    private void CollectFish() {
+        if (fishCollectArea == null) return;
+        SetupFishing();
+        fishCollectArea.CollectFish(fishOnHook);
+        fishOnHook = null;
+    }
+
     void Start() {
         physicsEvents.CollisionEnter += (collider) => {
 
             if (fishOnHook == null &&
                 collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
                 collider.gameObject.TryGetComponent<FishSwimming>(out var fish))
-            {
-                Debug.Log("Catched!");
-                fish.Catch(transform);
-                gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
-                fishOnHook = fish.GetComponent<Fish>();
+            {   
+                CatchFish(fish);
+                if (fishCollectArea != null)
+                    CollectFish();
             }
         };
 
@@ -95,12 +113,11 @@ public class Bait : MonoBehaviour
                 currentReelDirection = reelDirection;
             }
 
-            if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
+            if (collision.TryGetComponent<FishCollectArea>(out var fishCollectArea)) {
+                this.fishCollectArea = fishCollectArea;
                 if (fishOnHook)
                 {
-                    SetupFishing();
-                    fishCollect.CollectFish(fishOnHook);
-                    fishOnHook = null;
+                    CollectFish();
                 }
                 else if (inWater)
                 {
@@ -115,6 +132,10 @@ public class Bait : MonoBehaviour
                 currentReelDirection = new float2(0.4f, 0);
                 body.velocity =  new Vector2(body.velocity.x, 0);
             }
+
+            if (collision.TryGetComponent<FishCollectArea>(out var _)) {
+                fishCollectArea = null;
+            }
         };  
 
         body.gravityScale = 0f;
@@ -123,6 +144,8 @@ public class Bait : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(fishCollectArea);
+
         if (Debugging) {
             float2 endPoint = EndPoint;
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
