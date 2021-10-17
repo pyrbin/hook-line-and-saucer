@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2835973644139204940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2835973644139204938}
+  - component: {fileID: 2835973644139204939}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: MusicManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2835973644139204938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2835973644139204940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.095972, y: 16.312927, z: 2229.9568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2835973644139204939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2835973644139204940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef2901f10073c41aedc7c1ac2e2b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Game:
+    Guid:
+      Data1: -909383075
+      Data2: 1266794484
+      Data3: -1333701455
+      Data4: 1462036178
+    Path: event:/Music/game
+  Title:
+    Guid:
+      Data1: 468447511
+      Data2: 1276618636
+      Data3: 1637378957
+      Data4: -1732069573
+    Path: event:/Music/title
+  Death:
+    Guid:
+      Data1: -1261609486
+      Data2: 1100790756
+      Data3: -1232132961
+      Data4: -1663183109
+    Path: event:/Music/death
