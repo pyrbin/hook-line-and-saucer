@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Fish))]
 abstract public class FishSpellBehaviour : MonoBehaviour
 {
+    public string SpellName = "spell_name";
+
     public event Action Casted;
 
     public bool IsCasting => startedCast;

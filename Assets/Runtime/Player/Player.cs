@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public event Action<Fish> UsedSpell;
+
     public static Player instance;
 
     private void Awake()
@@ -34,13 +36,13 @@ public class Player : MonoBehaviour
 
     public void CastSpell(InputAction.CallbackContext context)
     {   
-
         if (throwFish?.Fish?.Parent?.Spell == null || throwFish.hasNotThrown) return;
 
         if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
             context.action.phase == InputActionPhase.Performed)
         {
             throwFish?.Fish?.Parent?.Spell?.CastStart();
+            UsedSpell?.Invoke(throwFish?.Fish?.Parent);
         }
         else if (context.action.triggered && context.action.ReadValue<float>() == default &&
           context.action.phase == InputActionPhase.Performed)

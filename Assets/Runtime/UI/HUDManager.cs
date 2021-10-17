@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-
+    public SpellBar spellBar;
     public PowerBar powerBar;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
