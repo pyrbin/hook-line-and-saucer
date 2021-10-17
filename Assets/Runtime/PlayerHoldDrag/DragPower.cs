@@ -31,7 +31,6 @@ public class DragPower : MonoBehaviour
     {
         holdDrag.Released += (drag) => {
             currentPower -= math.length(drag);
-            Debug.Log(currentPower);
         };
     }
 

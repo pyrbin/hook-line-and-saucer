@@ -56,7 +56,7 @@ public class FishingRod : MonoBehaviour
 
     public void Reset() {
         pole.setRotation(0);
-        bait.BeginFishing();
+        bait.SetupFishing();
     }
 
     // Update is called once per frame
@@ -64,13 +64,9 @@ public class FishingRod : MonoBehaviour
     {
         if (locked) return;
         
-        bait.SetForce(math.length(holdDrag.Drag));
-
-        if (!bait.inWater && holdDrag.IsDragging) {
-            pole.setRotation(math.length(holdDrag.Drag));
-        }
-
         if(holdDrag.IsDragging) {
+            bait.SetForce(math.length(holdDrag.Drag));
+            pole.setRotation(math.length(holdDrag.Drag));
             bait.transform.position = new Vector3(poleTip.position.x, bait.transform.position.y, 0);
         }
     }

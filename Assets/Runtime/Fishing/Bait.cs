@@ -21,26 +21,34 @@ public class Bait : MonoBehaviour
     public float distanceOffset;
 
     public float forceModifier = 1;
+
     public float timeToThrow = 1;
+
     public float throwHeight = 4;
 
-    public float reelForce = 10f;
-    public float2 reelDirection = new float2(0.2f, 1f);
+    public float reelForce = 2f;
+
+    public float2 reelDirection = new float2(0.1f, 1f);
+
+    private float2 currentReelDirection;
 
     [HideInInspector]
     public bool inWater = false;
+
     [HideInInspector]
     public bool shouldReel = false;
 
     private float force = 0;
 
     private Vector3 startPoint;
-    private float2 fixedEndPoint;
 
     private Fish fishOnHook;
 
     private Rigidbody2D body;
+
     private PhysicsEvents2D physicsEvents;
+
+    private float2 EndPoint => new float2(math.clamp((-force), maxDistance, minDistance) + distanceOffset + startPoint.x, startPoint.y);
 
     private void OnValidate()
     {
@@ -49,14 +57,22 @@ public class Bait : MonoBehaviour
 
     void Awake() {
         startPoint = transform.position;
+        currentReelDirection = reelDirection;
         TryGetComponent(out physicsEvents);
         TryGetComponent(out body);
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
     }
 
-    public void BeginFishing()
+    public void SetupFishing()
     {
-        Reset();
+        transform.position = startPoint;
+        inWater = false;
+        body.gravityScale = 0f;
+        body.velocity = Vector2.zero;
+        body.angularVelocity = 0f;
+        body.rotation = 0f;
+        shouldReel = false;
+        gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
     }
 
     void Start() {
@@ -66,6 +82,7 @@ public class Bait : MonoBehaviour
                 collider.gameObject.TryGetComponent<Fish>(out var parent) && parent.FishState == FishState.Swimming &&
                 collider.gameObject.TryGetComponent<FishSwimming>(out var fish))
             {
+                Debug.Log("Catched!");
                 fish.Catch(transform);
                 gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
                 fishOnHook = fish.GetComponent<Fish>();
@@ -75,27 +92,27 @@ public class Bait : MonoBehaviour
         physicsEvents.TriggerEnter += (collision) => {
             if (collision.TryGetComponent<Water>(out var Water))  {
                 setInWater();
-                reelDirection = new float2(0.1f, 1f);
+                currentReelDirection = reelDirection;
             }
 
             if (collision.TryGetComponent<FishCollectArea>(out var fishCollect)) {
                 if (fishOnHook)
                 {
-                    Reset();
+                    SetupFishing();
                     fishCollect.CollectFish(fishOnHook);
                     fishOnHook = null;
                 }
                 else if (inWater)
                 {
                     ReelEnded?.Invoke();
-                    BeginFishing();
+                    SetupFishing();
                 }
             }
         };  
 
         physicsEvents.TriggerExit += (collision) => {
             if (collision.TryGetComponent<Water>(out var Water))  {
-                reelDirection = new float2(0.1f, 0);
+                currentReelDirection = new float2(0.4f, 0);
                 body.velocity =  new Vector2(body.velocity.x, 0);
             }
         };  
@@ -107,7 +124,7 @@ public class Bait : MonoBehaviour
     void Update()
     {
         if (Debugging) {
-            float2 endPoint = EndPoint();
+            float2 endPoint = EndPoint;
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
         }   
        
@@ -124,16 +141,6 @@ public class Bait : MonoBehaviour
         }
     }
 
-    public void Reset() {
-        transform.position = startPoint;
-        inWater = false;
-        body.gravityScale = 0f;
-        body.velocity = Vector2.zero;
-        body.angularVelocity = 0f;
-        body.rotation = 0f;
-        shouldReel = false;
-    }
-
     public void ReleaseDrag() {
         Release();
     }
@@ -144,23 +151,21 @@ public class Bait : MonoBehaviour
     }
 
     public void Reel() {
-        body.AddForce(reelDirection*reelForce);
+        body.AddForce(currentReelDirection*reelForce);
     }
 
     void Release() {
-        fixedEndPoint = EndPoint();
-        StartCoroutine(MoveOverSeconds(gameObject, new Vector3(fixedEndPoint.x, fixedEndPoint.y, 0), timeToThrow));
+        var endPoint = EndPoint;
+        StartCoroutine(MoveOverSeconds(gameObject, new Vector3(endPoint.x, endPoint.y, 0), timeToThrow));
     }
     
-    float2 EndPoint() {
-        var x = math.clamp((-force), maxDistance, minDistance);
-        return new float2(x + distanceOffset + startPoint.x, startPoint.y);
-    }
-
     public void setInWater() {
-        HitWater?.Invoke();
+        if (!inWater) {
+            //First time hitting the water
+            HitWater?.Invoke();
+            gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
+        }
         inWater = true;
-        gameObject.SetLayerRecursively(LayerMask.NameToLayer("Bait"));
     }
 
     public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
@@ -177,5 +182,7 @@ public class Bait : MonoBehaviour
         }
         body.gravityScale = 0.5f;
     }
+
+
 
 }
