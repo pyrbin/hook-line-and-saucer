@@ -53,6 +53,7 @@ public class Bait : MonoBehaviour
     public FMODUnity.EventReference FishCollectSound;
     public FMODUnity.EventReference NiceCatchSound;
     public FMODUnity.EventReference ReelingSound;
+    public FMOD.Studio.EventInstance reelingSoundState;
 
     private float2 EndPoint() {
         var holdDrag = Player.instance.holdDrag;
@@ -73,6 +74,7 @@ public class Bait : MonoBehaviour
         TryGetComponent(out body);
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
     }
+
 
     public void SetupFishing()
     {
@@ -106,6 +108,9 @@ public class Bait : MonoBehaviour
     }
 
     void Start() {
+
+        reelingSoundState = FMODUnity.RuntimeManager.CreateInstance(ReelingSound);
+
         physicsEvents.CollisionEnter += (collider) => {
 
             if (fishOnHook == null &&

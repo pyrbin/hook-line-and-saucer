@@ -96,10 +96,12 @@ public class FishingRod : MonoBehaviour
     }
     
     void TriggerPressed() {
+        if (bait.inWater) bait.reelingSoundState.start();
         bait.shouldReel = true;
     }
 
     void TriggerReleased() {
+        bait.reelingSoundState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         bait.shouldReel = false;
     }
 
