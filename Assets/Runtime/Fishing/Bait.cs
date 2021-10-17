@@ -144,8 +144,6 @@ public class Bait : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(fishCollectArea);
-
         if (Debugging) {
             float2 endPoint = EndPoint;
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
