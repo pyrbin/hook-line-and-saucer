@@ -33,8 +33,9 @@ public class Player : MonoBehaviour
     }
 
     public void CastSpell(InputAction.CallbackContext context)
-    {
-        if (throwFish?.Fish?.Parent?.Spell == null) return;
+    {   
+
+        if (throwFish?.Fish?.Parent?.Spell == null || throwFish.hasNotThrown) return;
 
         if (context.action.triggered && context.action.ReadValue<float>() != 0 &&
             context.action.phase == InputActionPhase.Performed)
