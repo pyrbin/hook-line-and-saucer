@@ -301,6 +301,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &2097675430069134616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6694158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4658508
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0744335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360912858118918798, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+      propertyPath: m_Name
+      value: Pufferfish Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
 --- !u!1001 &2773669242760132443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -422,6 +479,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 106290327039453484, guid: b28a352ebc1756241bbce6be13f67de6, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5325805443951870556, guid: b28a352ebc1756241bbce6be13f67de6, type: 3}
       propertyPath: m_Name
       value: Explosion
