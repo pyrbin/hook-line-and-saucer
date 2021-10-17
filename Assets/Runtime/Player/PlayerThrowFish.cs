@@ -7,6 +7,8 @@ public class PlayerThrowFish : MonoBehaviour
 
     public float Dampening = 0.933f;
 
+    public float MinForce = 0.5f;
+
     public bool Debugging = false;
 
 
@@ -28,7 +30,7 @@ public class PlayerThrowFish : MonoBehaviour
     {
         HoldDrag.Released += (_) =>
         {
-            if (Fish && math.length(HoldDrag.Drag) > math.EPSILON)
+            if (Fish && math.length(HoldDrag.Drag) > MinForce)
             {
                 Fish.ApplyForce(new float3(Force, 0));
                 if (hasNotThrown)
@@ -45,6 +47,11 @@ public class PlayerThrowFish : MonoBehaviour
         if (HoldDrag.IsDragging && Fish)
         {
             var offset = new float3(Fish.CalculateForce(new float3(Force, 0)), 0);
+
+            if (hasNotThrown)
+            {
+                Fish.RotateToForce(offset.xy);
+            }
 
             if (Debugging)
                 Debug.DrawLine(Fish.transform.position, (float3)Fish.transform.position + offset, Color.green);

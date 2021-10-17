@@ -15,10 +15,19 @@ public class GameManager : MonoBehaviour
     public DragPower dragPower;
     public HUDManager hudManager;
 
-    public Player player;    
+    public Player player;
 
-    void Start()
+    public static GameManager instance;
+
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+
         StartedFishing += () =>
         {
             hudManager.powerBar.gameObject.SetActive(false);

@@ -104,8 +104,15 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         Body.velocity = float2.zero;
     }
 
+    public void RotateToForce(float2 force)
+    {
+        var angle = Mathf.Atan2(force.y, force.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), RotationFactor * Time.fixedDeltaTime);
+    }
+
     void Update()
     {
+
         if (IsFlying)
         {
             switch (RotationMode)
@@ -117,8 +124,7 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 
                     if (Body.velocity.magnitude > 0.35f)
                     {
-                        var angle = Mathf.Atan2(Body.velocity.y, Body.velocity.x) * Mathf.Rad2Deg;
-                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), RotationFactor * Time.fixedDeltaTime);
+                        RotateToForce(Body.velocity);
                     }
                     break;
             }

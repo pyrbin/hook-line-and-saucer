@@ -2042,6 +2042,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404249460}
     m_Modifications:
+    - target: {fileID: 2295685030187855312, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295685030187855313, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295685030571934315, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055035247645203609, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5904256521864343443, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3782,7 +3798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 76086935495952190, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7773973
+      value: 1.7783505
       objectReference: {fileID: 0}
     - target: {fileID: 76086935495952190, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_Lens.OrthographicSize
