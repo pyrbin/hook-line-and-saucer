@@ -299,7 +299,7 @@ MonoBehaviour:
       Data4: -648656426
     Path: event:/Fish/octupus
   Damage: 1
-  InkTime: 2
+  InkTime: 30
   InkSprite: {fileID: 21300000, guid: b3b8640716842b541a0c36a912f1c0a3, type: 3}
   InkEffects: {fileID: 2614701099303570493}
   Area: {fileID: 5930181765609222752}
@@ -456,4 +456,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.051105388, y: 0.0046643023}
   serializedVersion: 2
-  m_Radius: 1.6672269
+  m_Radius: 3

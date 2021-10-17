@@ -139,9 +139,14 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 
             ufo.ThrowFish(Parent, Body.velocity * Parent.Stats.Weight, doDamage);
 
+            if (ufo.Health.Empty)
+            {
+                GameManager.instance.dragPower.AddPower(GameManager.instance.dragPower.MaxPower * (1 / 4));
+            }
+
             doDamage = false;
 
-            Body.velocity = float2.zero;
+            Body.velocity *= 0.05f;
         }
     }
 

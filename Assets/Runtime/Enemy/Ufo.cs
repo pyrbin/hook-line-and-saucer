@@ -180,6 +180,12 @@ public class Ufo : MonoBehaviour
 
     void PursueTarget()
     {
+        if (Target.Health.Empty)
+        {
+            Target = null;
+            return;
+        }
+
         if (math.distance(transform.position, cacheTargetPos) <= math.EPSILON)
         {
             Attack();

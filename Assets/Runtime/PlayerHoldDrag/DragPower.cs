@@ -34,6 +34,11 @@ public class DragPower : MonoBehaviour
         };
     }
 
+    public void AddPower(float power)
+    {
+        currentPower = math.min(MaxPower, currentPower + power);
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -30,6 +30,7 @@ public class ExplosionSpell : FishSpellBehaviour
     public float ChargeFactor => timeCounter / MaxTime;
 
     private float3 initialScale;
+    private float3 initialEffectScale;
 
     public float ExplosionRadius => Area.radius * Area.transform.lossyScale.x;
 
@@ -45,6 +46,8 @@ public class ExplosionSpell : FishSpellBehaviour
             timeCounter = math.min(timeCounter + Time.deltaTime, MaxTime);
 
             transform.localScale = initialScale + (initialScale * (ChargeFactor * MaxScale));
+
+            Effects.transform.localScale = initialEffectScale + (initialEffectScale * (ChargeFactor * MaxScale));
 
             if (timeCounter >= MaxTime)
             {
@@ -76,6 +79,7 @@ public class ExplosionSpell : FishSpellBehaviour
         Available = false;
 
         initialScale = transform.localScale;
+        initialEffectScale = Effects.transform.localScale;
 
         Player.instance.holdDrag.Disable();
 
