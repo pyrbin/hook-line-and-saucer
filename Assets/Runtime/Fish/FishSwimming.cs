@@ -92,5 +92,9 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
 
     public void RemoveHook() {
         hook = null;
+        Model.transform.localScale = new float3(
+            Math.Abs(Model.transform.localScale.x),
+            Math.Abs(Model.transform.localScale.y),
+            Math.Abs(Model.transform.localScale.z));
     }
 }

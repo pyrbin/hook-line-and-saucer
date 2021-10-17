@@ -9,9 +9,19 @@ abstract public class FishSpellBehaviour : MonoBehaviour
 
     public event Action Casted;
 
+    protected Fish Caster;
+
     public bool IsCasting => startedCast;
 
     protected bool startedCast = false;
+
+    [HideInInspector]
+    public bool Available = true;
+
+    private void Awake()
+    {
+        Caster = GetComponent<Fish>();
+    }
 
     abstract protected void OnCastStart(Fish caster);
 
@@ -62,5 +72,15 @@ abstract public class FishSpellBehaviour : MonoBehaviour
     protected void StopCast()
     {
         CastEnd();
+    }
+
+    protected void DisableControls()
+    {
+        Player.instance.holdDrag.Disable();
+    }
+
+    protected void EnableControls()
+    {
+        Player.instance.holdDrag.Enable();
     }
 }

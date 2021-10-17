@@ -48,6 +48,8 @@ public class Bait : MonoBehaviour
 
     private FishCollectArea fishCollectArea;
 
+    public FMODUnity.EventReference LandInWater;
+
     private float2 EndPoint() {
         var holdDrag = Player.instance.holdDrag;
         var factor = math.length(holdDrag.Drag) / holdDrag.Max;
@@ -199,6 +201,7 @@ public class Bait : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        FMODUnity.RuntimeManager.PlayOneShot(LandInWater, transform.position);
         body.gravityScale = 0.5f;
     }
 

@@ -46,24 +46,21 @@ public class InkExplosionSpell : FishSpellBehaviour
 
     protected override void OnCastStart(Fish caster)
     {
-        Player.instance.holdDrag.Disable();
+        Available = false;
+        DisableControls();
     }
 
     protected override void OnCastEnded(Fish caster)
     {
         Explode();
-        caster.HideVisuals();
-        caster.Projectile.ScheduleDespawn(1300);
-    }
-
-    private void ResetControls()
-    {
-        Player.instance.holdDrag.Enable();
+        // caster.HideVisuals();
+        // caster.Projectile.ScheduleDespawn(1300);
+        EnableControls();
     }
 
     protected override void OnInterrupt()
     {
-        ResetControls();
+        EnableControls();
     }
 
     private void Update()

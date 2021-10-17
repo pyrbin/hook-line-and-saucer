@@ -202,6 +202,13 @@ MonoBehaviour:
   poleTip: {fileID: 0}
   locked: 0
   dragMax: 400
+  ThrowEvent:
+    Guid:
+      Data1: -1084911879
+      Data2: 1259313011
+      Data3: -1426097730
+      Data4: 1017446330
+    Path: event:/Fishing/throw_bait
 --- !u!114 &5904256521864343445
 MonoBehaviour:
   m_ObjectHideFlags: 0
