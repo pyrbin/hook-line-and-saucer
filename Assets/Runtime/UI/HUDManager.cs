@@ -6,10 +6,18 @@ public class HUDManager : MonoBehaviour
 {
     public SpellBar spellBar;
     public PowerBar powerBar;
-
+    public FishingBar fishingBar;
+    public FishingRod fishingRod;
 
     void Start()
     {
+        fishingRod.RodStartDrag += () => {
+            fishingBar.gameObject.SetActive(true);
+        };
+
+        fishingRod.RodReleased += (drag) => {
+            fishingBar.gameObject.SetActive(false);
+        };
     }
 
     // Update is called once per frame
