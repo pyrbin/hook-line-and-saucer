@@ -33,7 +33,6 @@ abstract public class FishSpellBehaviour : MonoBehaviour
 
     public void CastStart()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
         startedCast = true;
         OnCastStart(GetComponent<Fish>());
     }

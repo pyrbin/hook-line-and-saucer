@@ -17,12 +17,14 @@ public class EggDrop : FishSpellBehaviour
     private void Drop()
     {
         Instantiate(ProjectilePrefab, EggDropPoint.position, quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
 
         drops++;
 
         if (drops >= Ammo)
         {
             isDropping = false;
+            EnableControls();
         }
     }
 
@@ -42,9 +44,6 @@ public class EggDrop : FishSpellBehaviour
 
     protected override void OnCastEnded(Fish caster)
     {
-        isDropping = false;
-
-        EnableControls();
     }
 
     protected override void OnInterrupt()

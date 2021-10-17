@@ -44,7 +44,8 @@ public class SceneLoader : MonoBehaviour
     public void NextScene()
     {
         var scene = SceneManager.GetActiveScene();
-        int nextLevelBuildIndex = scene.buildIndex + 1 % SceneManager.sceneCountInBuildSettings - 1;
+
+        int nextLevelBuildIndex = (scene.buildIndex + 1) % (SceneManager.sceneCountInBuildSettings);
 
         StartCoroutine(LoadScene(nextLevelBuildIndex));
     }

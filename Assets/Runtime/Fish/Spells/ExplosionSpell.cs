@@ -60,6 +60,7 @@ public class ExplosionSpell : FishSpellBehaviour
     private void Explode()
     {
         charging = false;
+        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
 
         foreach (var ufo in UfosOverlapping(Area))
         {

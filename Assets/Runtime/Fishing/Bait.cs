@@ -101,7 +101,13 @@ public class Bait : MonoBehaviour
     private void CollectFish() {
         if (fishCollectArea == null) return;
         FMODUnity.RuntimeManager.PlayOneShot(FishCollectSound, transform.position);
-        FMODUnity.RuntimeManager.PlayOneShot(NiceCatchSound, transform.position);
+
+
+        if (UnityEngine.Random.Range(0f, 1f) > 0.8f)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(NiceCatchSound, transform.position);
+        }
+
         SetupFishing();
         fishCollectArea.CollectFish(fishOnHook);
         fishOnHook = null;

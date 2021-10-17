@@ -29,6 +29,7 @@ public class InkExplosionSpell : FishSpellBehaviour
     private void Explode()
     {
         InkEffects.SetTrigger("Bomb");
+        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
 
         foreach (var ufo in UfosOverlapping(Area))
         {

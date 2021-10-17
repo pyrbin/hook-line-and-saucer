@@ -71,14 +71,23 @@ public class Ufo : MonoBehaviour
 
     public void SetEffect(Sprite sprite, int duration)
     {
-        RendererEffect.enabled = true;
-        RendererEffect.sprite = sprite;
-
-        Timers.SetTimeout(duration, () =>
+        if (RendererEffect)
         {
-            RendererEffect.enabled = false;
-            RendererEffect.sprite = null;
-        });
+            RendererEffect.enabled = true;
+            RendererEffect.sprite = sprite;
+
+            Timers.SetTimeout(duration, () =>
+            {
+                try
+                {
+                    RendererEffect.enabled = false;
+                    RendererEffect.sprite = null;
+                } catch
+                {
+                    // ignored
+                }
+            });
+        }
     }
 
     void Start()

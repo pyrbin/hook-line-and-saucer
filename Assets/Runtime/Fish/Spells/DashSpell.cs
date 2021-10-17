@@ -13,6 +13,7 @@ public class DashSpell : FishSpellBehaviour
 
     private void Dash(Fish caster)
     {
+        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
         caster.Projectile.ApplyForce(caster.Projectile.Direction * Force);
         DashEffects.gameObject.SetActive(true);
     }
@@ -29,8 +30,6 @@ public class DashSpell : FishSpellBehaviour
     private void OnTrigger(Collider2D col)
     {
         if (!isDashing) return;
-
-        Debug.Log($"{col} {col.name} {col.gameObject.TryGetComponent(out Ufo ufo2)}");
 
         if (col.gameObject.TryGetComponent(out Ufo ufo))
         {
@@ -61,12 +60,17 @@ public class DashSpell : FishSpellBehaviour
 
         Timers.SetTimeout(1000, () =>
         {
-            caster.Swimming.Model.color = new Color(1, 1, 1, 1f);
-            EnableControls();
-            isDashing = false;
-            Area.gameObject.SetActive(false);
-            gameObject.SetLayerRecursively(LayerMask.NameToLayer("Fish"));
-            DashEffects.gameObject.SetActive(false);
+            try
+            {
+                caster.Swimming.Model.color = new Color(1, 1, 1, 1f);
+                EnableControls();
+                isDashing = false;
+                Area.gameObject.SetActive(false);
+                gameObject.SetLayerRecursively(LayerMask.NameToLayer("Fish"));
+                DashEffects.gameObject.SetActive(false);
+            } catch {
+                // ignored
+            }
         });
     }
 

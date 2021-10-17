@@ -232,7 +232,7 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 512
-  SwimSpeed: 0.8
+  SwimSpeed: 1.5
   Frequency: 0.1
   Magnitude: 0.3
   Model: {fileID: 57358326791437507}
