@@ -18,11 +18,21 @@ public class GameManager : MonoBehaviour
     public Player player;    
     public PlayerHealth playerHealth;
 
+    [HideInInspector]
+    public ushort kills = 0;
 
     public static GameManager instance;
 
+    private void Update()
+    {
+        if (hudManager?.ScoreText)
+            hudManager.ScoreText.text = $"Score: {kills}"; 
+    }
+
     void Awake()
     {
+        kills = 0;
+
         if (instance == null)
         {
             instance = this;

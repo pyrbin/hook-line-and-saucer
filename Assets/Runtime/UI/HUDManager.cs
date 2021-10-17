@@ -8,6 +8,7 @@ public class HUDManager : MonoBehaviour
     public PowerBar powerBar;
     public FishingBar fishingBar;
     public FishingRod fishingRod;
+    public TMPro.TMP_Text ScoreText;
 
     void Start()
     {

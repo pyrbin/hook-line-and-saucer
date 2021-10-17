@@ -100,6 +100,8 @@ public class Ufo : MonoBehaviour
 
         Health.OnDeath += () =>
         {
+            GameManager.instance.kills++;
+
             Sleeping = true;
 
             Explosions.Play();
