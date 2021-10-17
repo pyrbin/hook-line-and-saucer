@@ -18,6 +18,12 @@ Defend your city from invading aliens by fishing and catapulting mutated fish & 
 * **Mouse1** - Hold & drag to throw fish in a direction
 * **Space** - Use fish power
 
+## Fish spells
+* **Puffer** - Hold space to grow, release to explode.
+* **Pike** - Press space to charge
+* **Squid** - Press space to spray ink (disabled enemies for a long period)
+* **Goldfish** - 🐠💩
+
 #### Made by Frans, Jottis, Isak & James
 ---
 
