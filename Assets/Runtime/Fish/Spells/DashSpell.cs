@@ -46,10 +46,7 @@ public class DashSpell : FishSpellBehaviour
     {
         Available = false;
         DisableControls();
-    }
 
-    protected override void OnCastEnded(Fish caster)
-    {
         caster.Swimming.Model.color = new Color(1, 1, 1, 0.5f);
 
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("FishDash"));
@@ -68,10 +65,17 @@ public class DashSpell : FishSpellBehaviour
                 Area.gameObject.SetActive(false);
                 gameObject.SetLayerRecursively(LayerMask.NameToLayer("Fish"));
                 DashEffects.gameObject.SetActive(false);
-            } catch {
+            }
+            catch
+            {
                 // ignored
             }
         });
+    }
+
+    protected override void OnCastEnded(Fish caster)
+    {
+
     }
 
     protected override void OnInterrupt()
