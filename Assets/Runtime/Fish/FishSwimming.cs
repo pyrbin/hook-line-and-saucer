@@ -96,5 +96,7 @@ public class FishSwimming : MonoBehaviour, IFishStateBehaviour
             Math.Abs(Model.transform.localScale.x),
             Math.Abs(Model.transform.localScale.y),
             Math.Abs(Model.transform.localScale.z));
+        transform.rotation = quaternion.identity;
+        Model.transform.localPosition = float3.zero;
     }
 }
