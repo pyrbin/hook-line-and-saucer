@@ -102,8 +102,8 @@ public class Bait : MonoBehaviour
         if (fishCollectArea == null) return;
         FMODUnity.RuntimeManager.PlayOneShot(FishCollectSound, transform.position);
 
-
-        if (UnityEngine.Random.Range(0f, 1f) > 0.8f)
+        // is gold fish
+        if (fishOnHook.gameObject.TryGetComponent<EggDrop>(out var _))
         {
             FMODUnity.RuntimeManager.PlayOneShot(NiceCatchSound, transform.position);
         }
