@@ -21,7 +21,6 @@ public class ExplosionSpell : FishSpellBehaviour
     public CircleCollider2D Area;
 
     [Space]
-    public SpriteRenderer DebugCircle;
     public bool Debugging;
 
     private float timeCounter = 0;
@@ -31,13 +30,16 @@ public class ExplosionSpell : FishSpellBehaviour
 
     private float3 initialScale;
 
-    private void Awake()
-    {
-        DebugCircle.enabled = false;
-    }
+    public float ExplosionRadius => Area.radius * Area.transform.lossyScale.x;
+
 
     private void Update()
     {
+        if (Debugging)
+        {
+            DebugDraw.Circle(transform.position, ExplosionRadius, Color.red);
+        }
+
         if (charging)
         {
             timeCounter = math.min(timeCounter + Time.deltaTime, MaxTime);
@@ -56,17 +58,8 @@ public class ExplosionSpell : FishSpellBehaviour
     {
         charging = false;
 
-        var results = new List<Collider2D>();
-
-        var count = Physics2D.OverlapCollider(Area, new ContactFilter2D
+        foreach (var ufo in UfosOverlapping(Area))
         {
-            layerMask = LayerMask.NameToLayer("Ufo")
-        }, results);
-
-        for (var i = 0; i < count; i++)
-        {
-            if (!results[i].TryGetComponent<Ufo>(out var ufo)) continue;
-
             ufo.Health.Damage(Damage);
 
             var dir = math.normalize((ufo.transform.position - transform.position));
@@ -74,8 +67,6 @@ public class ExplosionSpell : FishSpellBehaviour
 
             ufo.Knockback(force.xy);
         }
-
-        DebugCircle.enabled = false;
     }
 
     protected override void OnCastStart(Fish caster)
@@ -87,16 +78,13 @@ public class ExplosionSpell : FishSpellBehaviour
         caster.Projectile.Stop();
 
         charging = true;
-
-        if (Debugging)
-        {
-            DebugCircle.enabled = true;
-        }
     }
 
     protected override void OnCastEnded(Fish caster)
     {
-        if (charging) Explode();
+        if (charging)
+            Explode();
+
         caster.HideVisuals();
         caster.Projectile.ScheduleDespawn(1300);
     }
@@ -111,5 +99,6 @@ public class ExplosionSpell : FishSpellBehaviour
     {
         Player.instance.holdDrag.Enable();
     }
+
 }
 

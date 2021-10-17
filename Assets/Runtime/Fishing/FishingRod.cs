@@ -73,7 +73,6 @@ public class FishingRod : MonoBehaviour
         if (locked) return;
         
         if(holdDrag.IsDragging) {
-            bait.SetForce(math.length(holdDrag.Drag));
             pole.setRotation(math.length(holdDrag.Drag));
             bait.transform.position = new Vector3(poleTip.position.x, bait.transform.position.y, 0);
         }
