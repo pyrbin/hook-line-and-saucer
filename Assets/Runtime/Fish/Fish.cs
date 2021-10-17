@@ -40,7 +40,10 @@ public class Fish : MonoBehaviour
     };
 
     public FishSwimming Swimming;
+
     public FishProjectile Projectile;
+
+    public FishSpellBehaviour Spell;
 
     [HideInInspector]
     public PhysicsEvents2D PhysicsEvents;
@@ -70,12 +73,20 @@ public class Fish : MonoBehaviour
 
     public void Despawn()
     {
+        if (Spell && Spell.IsCasting)
+            Spell.Interrupt();
+
         Despawned?.Invoke(Stats);
 
         Timers.SetTimeout(300, () => {
             FishSpawner.instance.RemoveSelf(this);
             Destroy(this.gameObject);
         });
+    }
+
+    public void HideVisuals()
+    {
+        Swimming.Model.enabled = false;
     }
 
     public void SetState(FishState state)

@@ -211,6 +211,7 @@ MonoBehaviour:
     Weight: 1
   Swimming: {fileID: 57358328306397647}
   Projectile: {fileID: 171912191574046013}
+  Spell: {fileID: 0}
   PhysicsEvents: {fileID: 7600791813367846309}
 --- !u!114 &57358328306397647
 MonoBehaviour:
@@ -249,6 +250,7 @@ MonoBehaviour:
   TestForce:
     x: 0
     y: 8
+  Parent: {fileID: 171912191574046017}
   doDamage: 0
 --- !u!50 &7717605910490072948
 Rigidbody2D:
