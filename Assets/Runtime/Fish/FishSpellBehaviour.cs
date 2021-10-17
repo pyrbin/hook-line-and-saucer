@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Fish))]
@@ -38,6 +39,24 @@ abstract public class FishSpellBehaviour : MonoBehaviour
 
         startedCast = false;
         OnInterrupt();
+    }
+
+    private static List<Collider2D> results = new();
+
+    protected IEnumerable<Ufo> UfosOverlapping(Collider2D area)
+    {
+        var count = Physics2D.OverlapCollider(area, new ContactFilter2D
+        {
+            layerMask = LayerMask.NameToLayer("Ufo")
+        }, results);
+
+        for (var i = 0; i < count; i++)
+        {
+            if (!results[i].TryGetComponent<Ufo>(out var ufo))
+                continue;
+
+            yield return ufo;
+        }
     }
 
     protected void StopCast()
