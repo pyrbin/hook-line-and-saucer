@@ -290,6 +290,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Egg Drop
   Available: 1
+  SoundEffect:
+    Guid:
+      Data1: 1445946314
+      Data2: 1307917837
+      Data3: -2088879992
+      Data4: 1774481881
+    Path: event:/Fish/goldfish
   dropRate: 0.3
   Ammo: 8
   EggDropPoint: {fileID: 8229867424647193585}

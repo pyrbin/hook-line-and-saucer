@@ -18,6 +18,8 @@ abstract public class FishSpellBehaviour : MonoBehaviour
     [HideInInspector]
     public bool Available = true;
 
+    public FMODUnity.EventReference SoundEffect;
+
     private void Awake()
     {
         Caster = GetComponent<Fish>();
@@ -31,6 +33,7 @@ abstract public class FishSpellBehaviour : MonoBehaviour
 
     public void CastStart()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(SoundEffect, transform.position);
         startedCast = true;
         OnCastStart(GetComponent<Fish>());
     }

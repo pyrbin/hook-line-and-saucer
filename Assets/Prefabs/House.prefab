@@ -296,7 +296,7 @@ MonoBehaviour:
       Data3: -301124202
       Data4: -1298505090
     Path: event:/House/house_damage
-  OnHitSoundPercentage: 10
+  OnHitSoundPercentage: 3
 --- !u!114 &5913678673892719639
 MonoBehaviour:
   m_ObjectHideFlags: 0

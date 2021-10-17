@@ -291,6 +291,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Dash
   Available: 1
+  SoundEffect:
+    Guid:
+      Data1: -1752249207
+      Data2: 1266279980
+      Data3: 706587815
+      Data4: -1716954201
+    Path: event:/Fish/pike
   Force: 20
   Damage: 3
   Area: {fileID: 7400607116052066047}

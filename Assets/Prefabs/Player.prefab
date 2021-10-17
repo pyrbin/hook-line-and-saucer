@@ -377,6 +377,13 @@ MonoBehaviour:
   Fish: {fileID: 0}
   dragMax: 300
   hasNotThrown: 1
+  ThrowSound:
+    Guid:
+      Data1: -98677616
+      Data2: 1241087330
+      Data3: 1964451987
+      Data4: -1168247585
+    Path: event:/Fish/throw
 --- !u!114 &5904256521864343444
 MonoBehaviour:
   m_ObjectHideFlags: 0
