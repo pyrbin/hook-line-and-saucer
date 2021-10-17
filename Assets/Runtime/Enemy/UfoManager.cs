@@ -58,10 +58,14 @@ public class UfoManager : MonoBehaviour
         }
     }
 
+    public List<House> AliveTarget => Targets.Where(x => !x.Health.Empty).ToList();
+
     public House GetNewTarget()
     {
-        return Targets.Where(x => Ufos.All(u => u.Target != x)).FirstOrDefault() ??
-               Targets.ElementAt(UnityEngine.Random.Range(0, Targets.Count-1));
+        if (AliveTarget.Count == 0) return null;
+
+        return AliveTarget.Where(x => Ufos.All(u => u.Target != x)).FirstOrDefault() ??
+               AliveTarget.ElementAt(UnityEngine.Random.Range(0, AliveTarget.Count-1));
     }
 
     IEnumerator SpawnInterval()
