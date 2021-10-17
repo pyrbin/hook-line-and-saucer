@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour
     public GameObject MenuObjects;
     public GameObject Tutorial;
 
+    void Start() {
+        MusicManager.instance.StartTitleMusic();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");

@@ -38,7 +38,6 @@ public class MusicManager : MonoBehaviour
         gameState = FMODUnity.RuntimeManager.CreateInstance(Game);
         titleState = FMODUnity.RuntimeManager.CreateInstance(Title);
         deathState = FMODUnity.RuntimeManager.CreateInstance(Death);
-        StartTitleMusic();
     }
 
     public void StartGameMusic() {
