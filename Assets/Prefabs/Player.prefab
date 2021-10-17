@@ -145,6 +145,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3e2c35d9-6b4a-497a-a60f-0988693299ba
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5904256521864343445}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: CastSpell
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: be77c5df-2842-4440-8a15-357dda630927
+    m_ActionName: Player/Spell[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

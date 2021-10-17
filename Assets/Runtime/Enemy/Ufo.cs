@@ -56,6 +56,11 @@ public class Ufo : MonoBehaviour
         if (Health.Empty)
             return;
 
+        Knockback(thrust);
+    }
+
+    public void Knockback(float2 thrust)
+    {
         const float thrustMod = 0.85f;
 
         Body.AddForce(thrust * thrustMod, ForceMode2D.Force);

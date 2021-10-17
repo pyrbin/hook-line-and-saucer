@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour
 
         playerThrowFish.FirstThrow += () =>
         {
-
             cameraManager.GoToTracking(playerThrowFish.Fish.gameObject.transform);
             playerThrowFish.Fish.Parent.Despawned += (stats) =>
             {
+                playerThrowFish.Fish = null;
                 StartFishing();
             };
         };

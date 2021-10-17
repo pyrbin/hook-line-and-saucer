@@ -81,6 +81,11 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         });
     }
 
+    public void Stop()
+    {
+        Body.velocity = float2.zero;
+    }
+
     void FixedUpdate()
     {
         if (IsFlying)

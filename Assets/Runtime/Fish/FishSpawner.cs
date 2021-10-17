@@ -39,8 +39,8 @@ public class FishSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        var point = SpawnAreas.ElementAt(UnityEngine.Random.Range(0, SpawnAreas.Count - 1)).GetRandomPointInsideCollider();
-        var fish = Instantiate(Prefabs.ElementAt(UnityEngine.Random.Range(0, Prefabs.Count-1)), point, quaternion.identity, transform);
+        var point = SpawnAreas.ElementAt(UnityEngine.Random.Range(0, SpawnAreas.Count )).GetRandomPointInsideCollider();
+        var fish = Instantiate(Prefabs.ElementAt(UnityEngine.Random.Range(0, Prefabs.Count)), point, quaternion.identity, transform);
 
         Fishes.Add(fish.GetComponent<Fish>());
     }
