@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -6,6 +7,11 @@ using UnityEngine.InputSystem;
 
 public class FishingRod : MonoBehaviour
 {
+
+
+    public event Action<float2> RodReleased;
+
+    public event Action RodStartDrag;
 
     public Bait bait;
     public Pole pole;
@@ -27,12 +33,14 @@ public class FishingRod : MonoBehaviour
         {
             if (!locked)
             {
+                    RodStartDrag?.Invoke();
                 //pole.PoleSprite.flipX = true;
             }
         };
 
         holdDrag.Released += (drag) => {
             if (!locked) {
+                RodReleased?.Invoke(drag);
                 locked = true;
                 //pole.PoleSprite.flipX = false;
                 holdDrag.Disable();   

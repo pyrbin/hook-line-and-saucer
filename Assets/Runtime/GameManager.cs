@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
         StartedFishing += () =>
         {
             hudManager.powerBar.gameObject.SetActive(false);
+            hudManager.spellBar.gameObject.SetActive(false);
+
+            dragPower.Deactivate();
             cameraManager.GoToFishing();
             player.StartFishing();
         };
@@ -29,11 +32,25 @@ public class GameManager : MonoBehaviour
         StartedThrowFish += () =>
         {     
             hudManager.powerBar.gameObject.SetActive(true);
+            hudManager.fishingBar.gameObject.SetActive(false);
+
+            if (playerThrowFish?.Fish?.Parent?.Spell != null)
+            {
+                hudManager.spellBar.gameObject.SetActive(true);
+                hudManager.spellBar.SetFishIcon(playerThrowFish.Fish.Parent.Swimming.Model.sprite);
+                hudManager.spellBar.SetFishSpellName(playerThrowFish.Fish.Parent.Spell?.SpellName);
+            }
+
             dragPower.Activate();
             cameraManager.GoToOverview();
         };
 
         fishCollectArea.FishCollected += (fish) => OnCollectFish(fish);
+
+        player.UsedSpell += (f) =>
+        {
+            hudManager.spellBar.gameObject.SetActive(false);
+        };
 
         playerThrowFish.FirstThrow += () =>
         {
@@ -47,9 +64,10 @@ public class GameManager : MonoBehaviour
     }
 
     void OnCollectFish(Fish fish) {
-        StartedThrowFish?.Invoke();
         fish.transform.position = fishProjectilePosition.position;
         player.StartThrowFish(fish);
+
+        StartedThrowFish?.Invoke();
     }
 
     void StartFishing() {
