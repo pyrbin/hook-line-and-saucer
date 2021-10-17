@@ -614,13 +614,41 @@ MonoBehaviour:
   inWater: 0
   shouldReel: 0
   fishOnHook: {fileID: 0}
-  LandInWater:
+  LandInWaterSound:
     Guid:
       Data1: 1783503042
       Data2: 1280978050
       Data3: -1135341408
       Data4: -361304842
     Path: event:/Fishing/bait_land
+  FishCatchSound:
+    Guid:
+      Data1: -1642333981
+      Data2: 1186835587
+      Data3: 251996544
+      Data4: 1035487880
+    Path: event:/Fishing/fish_catch
+  FishCollectSound:
+    Guid:
+      Data1: -2105681704
+      Data2: 1200942829
+      Data3: -54725198
+      Data4: -1724643668
+    Path: event:/Fishing/fish_collected
+  NiceCatchSound:
+    Guid:
+      Data1: -1311708881
+      Data2: 1268485277
+      Data3: 583433374
+      Data4: -1707612269
+    Path: event:/Fishing/nice_catch_one
+  ReelingSound:
+    Guid:
+      Data1: 1027919354
+      Data2: 1291478454
+      Data3: 1470110654
+      Data4: -2076823974
+    Path: event:/Fishing/reeling
 --- !u!50 &1434624208516285585
 Rigidbody2D:
   serializedVersion: 4

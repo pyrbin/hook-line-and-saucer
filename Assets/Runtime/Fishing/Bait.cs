@@ -48,7 +48,11 @@ public class Bait : MonoBehaviour
 
     private FishCollectArea fishCollectArea;
 
-    public FMODUnity.EventReference LandInWater;
+    public FMODUnity.EventReference LandInWaterSound;
+    public FMODUnity.EventReference FishCatchSound;
+    public FMODUnity.EventReference FishCollectSound;
+    public FMODUnity.EventReference NiceCatchSound;
+    public FMODUnity.EventReference ReelingSound;
 
     private float2 EndPoint() {
         var holdDrag = Player.instance.holdDrag;
@@ -84,7 +88,7 @@ public class Bait : MonoBehaviour
 
 
     public void CatchFish(FishSwimming fish) {
-        Debug.Log("Catched!");
+        FMODUnity.RuntimeManager.PlayOneShot(FishCatchSound, transform.position);
         fish.Catch(transform);
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("BaitCatched"));
         fishOnHook = fish.GetComponent<Fish>();
@@ -94,6 +98,8 @@ public class Bait : MonoBehaviour
 
     private void CollectFish() {
         if (fishCollectArea == null) return;
+        FMODUnity.RuntimeManager.PlayOneShot(FishCollectSound, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(NiceCatchSound, transform.position);
         SetupFishing();
         fishCollectArea.CollectFish(fishOnHook);
         fishOnHook = null;
@@ -201,7 +207,7 @@ public class Bait : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        FMODUnity.RuntimeManager.PlayOneShot(LandInWater, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(LandInWaterSound, transform.position);
         body.gravityScale = 0.5f;
     }
 
