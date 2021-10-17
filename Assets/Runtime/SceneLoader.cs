@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public const int GAME_SCENE = 1;
+
     public Animator crossFade;
     // public Animator musicCrossFade;
 
     public event Action<Scene> LoadingScene;
-
-    public static SceneLoader instance;
 
 
 #if UNITY_EDITOR
@@ -24,13 +24,14 @@ public class SceneLoader : MonoBehaviour
     }
 #endif
 
+    public static SceneLoader instance;
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-        } else
-        {
+        } else {
             Destroy(gameObject);
         }
 
@@ -57,6 +58,11 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadScene(int i)
     {
+        if (i == GAME_SCENE)
+        {
+            GameManager.ResetScore();
+        }
+
         crossFade.Play("CrossFade");
 
         yield return new WaitForSeconds(.3f);

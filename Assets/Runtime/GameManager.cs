@@ -18,20 +18,29 @@ public class GameManager : MonoBehaviour
     public Player player;    
     public PlayerHealth playerHealth;
 
-    [HideInInspector]
-    public ushort kills = 0;
+    public static ushort Score = 0;
 
     public static GameManager instance;
+
+    static public void AddScore()
+    {
+        Score++;
+    }
+
+    static public void ResetScore()
+    {
+        Score++;
+    }
 
     private void Update()
     {
         if (hudManager?.ScoreText)
-            hudManager.ScoreText.text = $"Score: {kills}"; 
+            hudManager.ScoreText.text = $"Score: {Score}"; 
     }
 
     void Awake()
     {
-        kills = 0;
+        Score = 0;
 
         if (instance == null)
         {

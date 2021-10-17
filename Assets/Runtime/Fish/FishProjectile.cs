@@ -141,7 +141,7 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 
             if (ufo.Health.Empty)
             {
-                GameManager.instance.dragPower.AddPower(GameManager.instance.dragPower.MaxPower * (1 / 4));
+                GameManager.instance.dragPower.AddPower(GameManager.instance.dragPower.MaxPower);
             }
 
             doDamage = false;

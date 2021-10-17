@@ -34,6 +34,7 @@ public class DashSpell : FishSpellBehaviour
         if (col.gameObject.TryGetComponent(out Ufo ufo))
         {
             ufo.Health.Damage(Damage);
+            GameManager.instance.dragPower.AddPower(GameManager.instance.dragPower.MaxPower);
         }
     }
 

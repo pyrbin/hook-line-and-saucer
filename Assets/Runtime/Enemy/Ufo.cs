@@ -109,7 +109,7 @@ public class Ufo : MonoBehaviour
 
         Health.OnDeath += () =>
         {
-            GameManager.instance.kills++;
+            GameManager.AddScore();
 
             Sleeping = true;
 
@@ -168,6 +168,8 @@ public class Ufo : MonoBehaviour
         {
 
             Target = UfoManager.instance.GetNewTarget();
+
+            if (Target == null) return;
 
             cacheTargetPos = Target.transform.position;
             cacheTargetPos.x += UnityEngine.Random.Range(-XRandom, XRandom);
