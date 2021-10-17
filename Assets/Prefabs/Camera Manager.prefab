@@ -62,7 +62,7 @@ MonoBehaviour:
     ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7757009, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7757009, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -427,6 +427,13 @@ MonoBehaviour:
   FishingCam: {fileID: 76086934809029114}
   OverviewCam: {fileID: 76086935960780049}
   TrackingCam: {fileID: 76086935495952190}
+  TransitionSound:
+    Guid:
+      Data1: 1083215861
+      Data2: 1309498217
+      Data3: -209144430
+      Data4: -1961758825
+    Path: event:/camera_transition
 --- !u!1 &76086935960780051
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +496,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7757009, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
