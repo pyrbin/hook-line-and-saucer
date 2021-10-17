@@ -298,6 +298,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404249460}
     m_Modifications:
+    - target: {fileID: 1477795817, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1405743558}
     - target: {fileID: 1685481159, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
       propertyPath: holdDrag
       value: 
@@ -635,6 +639,10 @@ PrefabInstance:
       propertyPath: hudManager
       value: 
       objectReference: {fileID: 81523324}
+    - target: {fileID: 8744452172196863371, guid: 2728de0910d15c74698dca6ccb26a221, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1405743558}
     - target: {fileID: 8744452172196863371, guid: 2728de0910d15c74698dca6ccb26a221, type: 3}
       propertyPath: cameraManager
       value: 
@@ -2042,6 +2050,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404249460}
     m_Modifications:
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[0]
+      value: 
+      objectReference: {fileID: 247481867}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[1]
+      value: 
+      objectReference: {fileID: 8454673672516658049}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[2]
+      value: 
+      objectReference: {fileID: 905813204}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[3]
+      value: 
+      objectReference: {fileID: 1317004527}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[4]
+      value: 
+      objectReference: {fileID: 1524100311}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[5]
+      value: 
+      objectReference: {fileID: 2085662730}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[6]
+      value: 
+      objectReference: {fileID: 1081941772}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[7]
+      value: 
+      objectReference: {fileID: 1960207044}
+    - target: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+      propertyPath: Houses.Array.data[8]
+      value: 
+      objectReference: {fileID: 1537096406}
     - target: {fileID: 2295685030187855312, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3463,6 +3511,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405743558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1049635988, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+  m_PrefabInstance: {fileID: 863586481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f4b8528a17d8449bc15019bf1912c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1462984286
 GameObject:
   m_ObjectHideFlags: 0
