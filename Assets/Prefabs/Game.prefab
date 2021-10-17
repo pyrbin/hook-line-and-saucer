@@ -51,3 +51,4 @@ MonoBehaviour:
   dragPower: {fileID: 0}
   hudManager: {fileID: 0}
   player: {fileID: 0}
+  playerHealth: {fileID: 0}

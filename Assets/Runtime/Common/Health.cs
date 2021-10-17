@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     private ushort currentHealth = 0;
 
     [NaughtyAttributes.ShowNonSerializedField()]
-    private ushort maxHealth = 0;
+    private ushort maxHealth = 0 ;
 
     public event Action<ushort> OnDamage;
 

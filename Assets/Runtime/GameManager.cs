@@ -16,9 +16,14 @@ public class GameManager : MonoBehaviour
     public HUDManager hudManager;
 
     public Player player;    
+    public PlayerHealth playerHealth;
 
     void Start()
     {
+        playerHealth.OnDeath += () => {
+            SceneLoader.instance.NextScene();
+        };
+
         StartedFishing += () =>
         {
             hudManager.powerBar.gameObject.SetActive(false);

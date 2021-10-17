@@ -12,6 +12,9 @@ public class SceneLoader : MonoBehaviour
 
     public event Action<Scene> LoadingScene;
 
+    public static SceneLoader instance;
+
+
 #if UNITY_EDITOR
     [NaughtyAttributes.Button("Next Scene Test")]
     public void NextSceneTestButton()
@@ -23,6 +26,14 @@ public class SceneLoader : MonoBehaviour
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Destroy(gameObject);
+        }
+
         if (GameObject.FindGameObjectsWithTag("SceneLoader").Count() > 1)
         {
             DestroyImmediate(gameObject);
@@ -33,7 +44,7 @@ public class SceneLoader : MonoBehaviour
     public void NextScene()
     {
         var scene = SceneManager.GetActiveScene();
-        int nextLevelBuildIndex = scene.buildIndex + 1 % SceneManager.sceneCountInBuildSettings;
+        int nextLevelBuildIndex = scene.buildIndex + 1 % SceneManager.sceneCountInBuildSettings - 1;
 
         StartCoroutine(LoadScene(nextLevelBuildIndex));
     }

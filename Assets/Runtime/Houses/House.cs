@@ -68,9 +68,12 @@ public class House : MonoBehaviour
 
     void UpdateSpritePosition()
     {
+        if (Model == null) return;
+
         var diff = 1f - Health.Factor;
         var yoffset = ((Model.sprite.rect.height * 0.9f) / Model.sprite.pixelsPerUnit) * diff;
-
-        Model.transform.localPosition = new float3(Model.transform.localPosition.x, -yoffset, Model.transform.localPosition.z);
+        var pos = new float3(Model.transform.localPosition.x, -yoffset, Model.transform.localPosition.z);
+        if (math.any(math.isnan(pos))) return;
+        Model.transform.localPosition = pos;
     }
 }
