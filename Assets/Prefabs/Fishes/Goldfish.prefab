@@ -298,7 +298,7 @@ MonoBehaviour:
       Data4: 1774481881
     Path: event:/Fish/goldfish
   dropRate: 0.3
-  Ammo: 16
+  Ammo: 8
   EggDropPoint: {fileID: 8229867424647193585}
   ProjectilePrefab: {fileID: 6880988547731118312, guid: a60ffe49eb825bf43bd289cd41a94d38, type: 3}
 --- !u!1 &4072852570836699936
