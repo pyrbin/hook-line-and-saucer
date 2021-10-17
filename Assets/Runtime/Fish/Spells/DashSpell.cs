@@ -7,12 +7,14 @@ public class DashSpell : FishSpellBehaviour
     public ushort Damage = 3;
 
     public PhysicsEvents2D Area;
+    public SpriteRenderer DashEffects;
 
     private bool isDashing = false;
 
     private void Dash(Fish caster)
     {
         caster.Projectile.ApplyForce(caster.Projectile.Direction * Force);
+        DashEffects.gameObject.SetActive(true);
     }
 
     private void Awake()
@@ -21,6 +23,7 @@ public class DashSpell : FishSpellBehaviour
         Area.CollisionEnter += OnCollision;
 
         Area.gameObject.SetActive(false);
+        DashEffects.gameObject.SetActive(false);
     }
 
     private void OnTrigger(Collider2D col)
@@ -63,6 +66,7 @@ public class DashSpell : FishSpellBehaviour
             isDashing = false;
             Area.gameObject.SetActive(false);
             gameObject.SetLayerRecursively(LayerMask.NameToLayer("Fish"));
+            DashEffects.gameObject.SetActive(false);
         });
     }
 
