@@ -291,11 +291,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Explosion
   Available: 1
+  SoundEffect:
+    Guid:
+      Data1: 1228083583
+      Data2: 1121346621
+      Data3: -407363199
+      Data4: -242605004
+    Path: event:/Fish/pufferfish
   Damage: 3
   KnockbackForce: 8
   MaxTime: 1
   MaxScale: 3
   Area: {fileID: 4760400058174423958}
+  Effects: {fileID: 2315902284498908184}
   Debugging: 1
 --- !u!1 &2520006022318371234
 GameObject:
@@ -402,6 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+--- !u!198 &2315902284498908184 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7415178919825664833, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}
+  m_PrefabInstance: {fileID: 5101378996319215449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6691951438577898587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1879456022811593474, guid: 229da337aa481ea46aef73cac52a0f1e, type: 3}

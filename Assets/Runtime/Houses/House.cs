@@ -42,7 +42,7 @@ public class House : MonoBehaviour
         };
 
         Health.OnDamage += (_) => {
-            if (OnHitSoundPercentage < UnityEngine.Random.Range(0, 100))
+            if (OnHitSoundPercentage > UnityEngine.Random.Range(0, 100))
                 FMODUnity.RuntimeManager.PlayOneShot(onHitSound, transform.position);
         };
 

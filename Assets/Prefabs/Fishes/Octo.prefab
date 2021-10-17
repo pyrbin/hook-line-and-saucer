@@ -291,6 +291,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Ink
   Available: 1
+  SoundEffect:
+    Guid:
+      Data1: -1930682792
+      Data2: 1276490176
+      Data3: 1219373229
+      Data4: -648656426
+    Path: event:/Fish/octupus
   Damage: 1
   InkTime: 2
   InkSprite: {fileID: 21300000, guid: b3b8640716842b541a0c36a912f1c0a3, type: 3}
