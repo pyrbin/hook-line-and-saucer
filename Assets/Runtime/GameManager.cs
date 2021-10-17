@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
             hudManager.powerBar.gameObject.SetActive(false);
             hudManager.spellBar.gameObject.SetActive(false);
 
+            dragPower.Deactivate();
             cameraManager.GoToFishing();
             player.StartFishing();
         };
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         StartedThrowFish += () =>
         {     
             hudManager.powerBar.gameObject.SetActive(true);
+            hudManager.fishingBar.gameObject.SetActive(false);
 
             if (playerThrowFish?.Fish?.Parent?.Spell != null)
             {
