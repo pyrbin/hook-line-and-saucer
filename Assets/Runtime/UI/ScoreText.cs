@@ -9,6 +9,7 @@ public class ScoreText : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        MusicManager.instance.StartDeathMusic();
         Text.text = $"SCORE {GameManager.Score}";
     }
 

@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        MusicManager.instance.StartGameMusic();
+
         Score = 0;
 
         if (instance == null)
