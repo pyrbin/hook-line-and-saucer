@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FishState: 1
   Stats:
-    Damage: 1
+    Damage: 3
     SpeedMult: 1
     Weight: 1
   Swimming: {fileID: 57358328306397647}
@@ -231,7 +231,7 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 512
-  SwimSpeed: 1.2
+  SwimSpeed: 1.6
   Frequency: 5
   Magnitude: 0.1
   Model: {fileID: 57358326791437507}
