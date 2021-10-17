@@ -302,10 +302,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1685481159, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
+      propertyPath: holdDrag
+      value: 
+      objectReference: {fileID: 1049635986}
     - target: {fileID: 8843789315127526168, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
       propertyPath: dragPower
       value: 
       objectReference: {fileID: 863586484}
+    - target: {fileID: 8843789316773635245, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
+      propertyPath: fishingRod
+      value: 
+      objectReference: {fileID: 1049635987}
     - target: {fileID: 8843789316773635246, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2728,6 +2736,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a052609f75a27c44ae400b2587ad72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049635986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5904256521864343446, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+  m_PrefabInstance: {fileID: 863586481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdb21407ee97a74e8303346264a4c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049635987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5904256521864343444, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+  m_PrefabInstance: {fileID: 863586481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbfccac848f1b44867c580ff6ffcf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1081941769
