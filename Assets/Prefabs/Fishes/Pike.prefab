@@ -294,6 +294,7 @@ MonoBehaviour:
   Force: 20
   Damage: 3
   Area: {fileID: 7400607116052066047}
+  DashEffects: {fileID: 6051502094558188047}
 --- !u!1 &457054289906207429
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c6d55ba67312d58409aa5cf0f0e5738a, type: 3}
   m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
   m_FlipX: 0
