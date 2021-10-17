@@ -70,6 +70,8 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
     {
         if (!IsActive) return;
 
+        IsActive = false;
+
         Body.velocity = float2.zero;
         Body.isKinematic = true;
 

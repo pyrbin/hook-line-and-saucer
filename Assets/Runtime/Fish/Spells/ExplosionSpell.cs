@@ -21,6 +21,7 @@ public class ExplosionSpell : FishSpellBehaviour
     public CircleCollider2D Area;
 
     [Space]
+    public SpriteRenderer DebugCircle;
     public bool Debugging;
 
     private float timeCounter = 0;
@@ -29,6 +30,11 @@ public class ExplosionSpell : FishSpellBehaviour
     public float ChargeFactor => timeCounter / MaxTime;
 
     private float3 initialScale;
+
+    private void Awake()
+    {
+        DebugCircle.enabled = false;
+    }
 
     private void Update()
     {
@@ -43,11 +49,6 @@ public class ExplosionSpell : FishSpellBehaviour
                 Explode();
                 StopCast();
             }
-        }
-
-        if (Debugging)
-        {
-            DebugDraw.Circle(transform.localPosition, Area.radius * transform.localScale.x, Color.red);
         }
     }
 
@@ -73,22 +74,29 @@ public class ExplosionSpell : FishSpellBehaviour
 
             ufo.Knockback(force.xy);
         }
+
+        DebugCircle.enabled = false;
     }
 
     protected override void OnCastStart(Fish caster)
     {
         initialScale = transform.localScale;
+
         Player.instance.holdDrag.Disable();
+
         caster.Projectile.Stop();
+
         charging = true;
+
+        if (Debugging)
+        {
+            DebugCircle.enabled = true;
+        }
     }
 
     protected override void OnCastEnded(Fish caster)
     {
         if (charging) Explode();
-
-        ResetControls();
-
         caster.HideVisuals();
         caster.Projectile.ScheduleDespawn(1300);
     }
