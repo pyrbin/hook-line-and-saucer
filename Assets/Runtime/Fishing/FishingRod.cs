@@ -21,6 +21,8 @@ public class FishingRod : MonoBehaviour
 
     public int dragMax = 400;
 
+    public FMODUnity.EventReference ThrowEvent;
+
     void Awake() {
 
     }
@@ -40,6 +42,8 @@ public class FishingRod : MonoBehaviour
 
         holdDrag.Released += (drag) => {
             if (!locked) {
+
+                FMODUnity.RuntimeManager.PlayOneShot(ThrowEvent, transform.position);
                 RodReleased?.Invoke(drag);
                 locked = true;
                 //pole.PoleSprite.flipX = false;
@@ -73,7 +77,6 @@ public class FishingRod : MonoBehaviour
         if (locked) return;
         
         if(holdDrag.IsDragging) {
-            bait.SetForce(math.length(holdDrag.Drag));
             pole.setRotation(math.length(holdDrag.Drag));
             bait.transform.position = new Vector3(poleTip.position.x, bait.transform.position.y, 0);
         }

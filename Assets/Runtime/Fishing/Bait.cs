@@ -38,8 +38,6 @@ public class Bait : MonoBehaviour
     [HideInInspector]
     public bool shouldReel = false;
 
-    private float force = 0;
-
     private Vector3 startPoint;
 
     public Fish fishOnHook;
@@ -50,7 +48,14 @@ public class Bait : MonoBehaviour
 
     private FishCollectArea fishCollectArea;
 
-    private float2 EndPoint => new float2(math.clamp((-force), maxDistance, minDistance) + distanceOffset + startPoint.x, startPoint.y);
+    public FMODUnity.EventReference LandInWater;
+
+    private float2 EndPoint() {
+        var holdDrag = Player.instance.holdDrag;
+        var factor = math.length(holdDrag.Drag) / holdDrag.Max;
+        var x = minDistance + distanceOffset + startPoint.x + factor*(maxDistance - minDistance);
+        return new float2(x, startPoint.y);
+    }
 
     private void OnValidate()
     {
@@ -145,7 +150,7 @@ public class Bait : MonoBehaviour
     void Update()
     {
         if (Debugging) {
-            float2 endPoint = EndPoint;
+            float2 endPoint = EndPoint();
             DebugDraw.Circle(new Vector3(endPoint.x, endPoint.y, 0), new Vector3(0,0,1), 0.2f, Color.red);
         }   
        
@@ -166,17 +171,12 @@ public class Bait : MonoBehaviour
         Release();
     }
 
-
-    public void SetForce(float force) {
-        this.force = force*forceModifier;
-    }
-
     public void Reel() {
         body.AddForce(currentReelDirection*reelForce);
     }
 
     void Release() {
-        var endPoint = EndPoint;
+        var endPoint = EndPoint();
         StartCoroutine(MoveOverSeconds(gameObject, new Vector3(endPoint.x, endPoint.y, 0), timeToThrow));
     }
     
@@ -201,6 +201,7 @@ public class Bait : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        FMODUnity.RuntimeManager.PlayOneShot(LandInWater, transform.position);
         body.gravityScale = 0.5f;
     }
 
