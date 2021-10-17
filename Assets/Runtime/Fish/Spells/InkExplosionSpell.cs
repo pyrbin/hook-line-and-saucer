@@ -16,6 +16,7 @@ public class InkExplosionSpell : FishSpellBehaviour
 
     [Header("Visuals")]
     public Sprite InkSprite;
+    public Animator InkEffects;
 
     [NaughtyAttributes.Required]
     public CircleCollider2D Area;
@@ -27,6 +28,8 @@ public class InkExplosionSpell : FishSpellBehaviour
 
     private void Explode()
     {
+        InkEffects.SetTrigger("Bomb");
+
         foreach (var ufo in UfosOverlapping(Area))
         {
             ufo.Health.Damage(Damage);
@@ -53,8 +56,6 @@ public class InkExplosionSpell : FishSpellBehaviour
     protected override void OnCastEnded(Fish caster)
     {
         Explode();
-        // caster.HideVisuals();
-        // caster.Projectile.ScheduleDespawn(1300);
         EnableControls();
     }
 

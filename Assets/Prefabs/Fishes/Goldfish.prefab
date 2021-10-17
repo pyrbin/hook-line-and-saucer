@@ -231,9 +231,9 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 512
-  SwimSpeed: 0.6
-  Frequency: 3
-  Magnitude: 0.3
+  SwimSpeed: 1.2
+  Frequency: 5
+  Magnitude: 0.1
   Model: {fileID: 57358326791437507}
 --- !u!114 &171912191574046013
 MonoBehaviour:
