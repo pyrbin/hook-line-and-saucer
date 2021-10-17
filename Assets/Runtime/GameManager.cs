@@ -47,9 +47,10 @@ public class GameManager : MonoBehaviour
 
         fishCollectArea.FishCollected += (fish) => OnCollectFish(fish);
 
-        player.UsedSpell += (f) =>
+        player.UsedSpell += (f, s) =>
         {
-            hudManager.spellBar.gameObject.SetActive(false);
+            if (!s.Available)
+                hudManager.spellBar.gameObject.SetActive(false);
         };
 
         playerThrowFish.FirstThrow += () =>

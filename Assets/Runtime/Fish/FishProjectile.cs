@@ -3,15 +3,26 @@ using ElRaccoone.Timers;
 using Unity.Mathematics;
 using UnityEngine;
 
+public enum RotationMode
+{
+    Spinning,
+    AlongForce
+}
+
 [RequireComponent(typeof(Fish), typeof(Rigidbody2D))]
 public class FishProjectile : MonoBehaviour, IFishStateBehaviour
 {
     public event Action<Ufo> HitUfo;
 
     public float RotationFactor = 15f;
+    public RotationMode RotationMode = RotationMode.Spinning;
 
     [NaughtyAttributes.ShowNativeProperty]
     public bool IsFlying => !Body.isKinematic;
+
+    public float2 Linear => Body.velocity;
+
+    public float2 Direction => math.normalize(Linear);
 
     public bool IsActive = false;
 
@@ -60,6 +71,11 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         doDamage = true;
     }
 
+    public void ApplyForce(float2 drag)
+    {
+        ApplyForce(new float3(drag, 0));
+    }
+
     public float2 CalculateForce(float3 drag)
     {
         var (len, dir) = mathx.lendir(drag);
@@ -88,11 +104,24 @@ public class FishProjectile : MonoBehaviour, IFishStateBehaviour
         Body.velocity = float2.zero;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (IsFlying)
         {
-            Body.MoveRotation(Body.rotation + (RotationFactor * Body.velocity.magnitude) * Time.fixedDeltaTime);
+            switch (RotationMode)
+            {
+                case RotationMode.Spinning:
+                    Body.MoveRotation(Body.rotation + (RotationFactor * Body.velocity.magnitude) * Time.fixedDeltaTime);
+                    break;
+                case RotationMode.AlongForce:
+
+                    if (Body.velocity.magnitude > 0.35f)
+                    {
+                        var angle = Mathf.Atan2(Body.velocity.y, Body.velocity.x) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), RotationFactor * Time.fixedDeltaTime);
+                    }
+                    break;
+            }
         }
     }
 

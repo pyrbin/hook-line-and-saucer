@@ -266,7 +266,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 33159942175166b4b875e40b8a71ac55, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -298,14 +298,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404249460}
     m_Modifications:
-    - target: {fileID: 636324742, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1685481159, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
+      propertyPath: holdDrag
+      value: 
+      objectReference: {fileID: 1049635986}
     - target: {fileID: 8843789315127526168, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
       propertyPath: dragPower
       value: 
       objectReference: {fileID: 863586484}
+    - target: {fileID: 8843789316773635245, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
+      propertyPath: fishingRod
+      value: 
+      objectReference: {fileID: 1049635987}
     - target: {fileID: 8843789316773635246, guid: 9a2a4464f02b200458181d32e159e2e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -583,7 +587,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2a873d4359e722a4d9f41b6542d21aac, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2529,7 +2533,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2a873d4359e722a4d9f41b6542d21aac, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2728,6 +2732,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a052609f75a27c44ae400b2587ad72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049635986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5904256521864343446, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+  m_PrefabInstance: {fileID: 863586481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdb21407ee97a74e8303346264a4c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049635987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5904256521864343444, guid: cbd39535824b50d4dbbb17ed559021c7, type: 3}
+  m_PrefabInstance: {fileID: 863586481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fbfccac848f1b44867c580ff6ffcf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1081941769
@@ -3358,7 +3384,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 97f49b2c87a4b004e8817419e6cbf4d6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3538,7 +3564,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 33159942175166b4b875e40b8a71ac55, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4632,7 +4658,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 97f49b2c87a4b004e8817419e6cbf4d6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5140,8 +5166,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: Prefabs.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: Prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 57358328306397646, guid: d5c704d57d8a9654985d0f4d7b83bcbc, type: 3}
     - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: Prefabs.Array.data[1]
       value: 

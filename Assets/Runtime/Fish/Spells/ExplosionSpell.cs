@@ -32,7 +32,6 @@ public class ExplosionSpell : FishSpellBehaviour
 
     public float ExplosionRadius => Area.radius * Area.transform.lossyScale.x;
 
-
     private void Update()
     {
         if (Debugging)
@@ -71,6 +70,8 @@ public class ExplosionSpell : FishSpellBehaviour
 
     protected override void OnCastStart(Fish caster)
     {
+        Available = false;
+
         initialScale = transform.localScale;
 
         Player.instance.holdDrag.Disable();
