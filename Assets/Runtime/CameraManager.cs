@@ -13,6 +13,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera TrackingCam;
 
+    public FMODUnity.EventReference TransitionSound;
+
     private Animator Animator;
 
     private void Awake()
@@ -22,11 +24,13 @@ public class CameraManager : MonoBehaviour
 
     public void GoToFishing()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(TransitionSound, transform.position);
         Animator.Play("Fishing");
     }
 
     public void GoToOverview()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(TransitionSound, transform.position);
         Animator.Play("Overview");
     }
 

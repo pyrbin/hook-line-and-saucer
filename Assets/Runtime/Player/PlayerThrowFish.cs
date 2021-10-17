@@ -24,12 +24,15 @@ public class PlayerThrowFish : MonoBehaviour
     [HideInInspector]
     public bool hasNotThrown = true;
 
+    public FMODUnity.EventReference ThrowSound;
+
     void Start()
     {
         HoldDrag.Released += (_) =>
         {
             if (Fish && math.length(HoldDrag.Drag) > math.EPSILON)
             {
+                FMODUnity.RuntimeManager.PlayOneShot(ThrowSound, transform.position);
                 Fish.ApplyForce(new float3(Force, 0));
                 if (hasNotThrown)
                 {

@@ -282,6 +282,21 @@ MonoBehaviour:
   Model: {fileID: 6160708307814462196}
   Mask: {fileID: 6160708307856567378}
   Health: {fileID: 5913678673892719639}
+  onDestroySound:
+    Guid:
+      Data1: 749698356
+      Data2: 1089870388
+      Data3: 140361641
+      Data4: 1011037319
+    Path: event:/House/house_destroyed
+  onHitSound:
+    Guid:
+      Data1: 980523702
+      Data2: 1202763722
+      Data3: -301124202
+      Data4: -1298505090
+    Path: event:/House/house_damage
+  OnHitSoundPercentage: 3
 --- !u!114 &5913678673892719639
 MonoBehaviour:
   m_ObjectHideFlags: 0

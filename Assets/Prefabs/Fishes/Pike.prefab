@@ -232,8 +232,8 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 512
-  SwimSpeed: 0.6
-  Frequency: 3
+  SwimSpeed: 0.8
+  Frequency: 0.1
   Magnitude: 0.3
   Model: {fileID: 57358326791437507}
 --- !u!114 &171912191574046013
@@ -291,6 +291,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Dash
   Available: 1
+  SoundEffect:
+    Guid:
+      Data1: -1752249207
+      Data2: 1266279980
+      Data3: 706587815
+      Data4: -1716954201
+    Path: event:/Fish/pike
   Force: 20
   Damage: 3
   Area: {fileID: 7400607116052066047}
@@ -370,7 +377,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c6d55ba67312d58409aa5cf0f0e5738a, type: 3}
-  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  m_Color: {r: 1, g: 0.9153609, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

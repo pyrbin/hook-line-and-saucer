@@ -19,6 +19,7 @@ public class ExplosionSpell : FishSpellBehaviour
 
     [NaughtyAttributes.Required]
     public CircleCollider2D Area;
+    public ParticleSystem Effects;
 
     [Space]
     public bool Debugging;
@@ -66,6 +67,8 @@ public class ExplosionSpell : FishSpellBehaviour
 
             ufo.Knockback(force.xy);
         }
+
+        Effects.Play();
     }
 
     protected override void OnCastStart(Fish caster)

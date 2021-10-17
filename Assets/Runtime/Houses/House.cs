@@ -13,6 +13,12 @@ public class House : MonoBehaviour
     [HideInInspector]
     public Health Health;
 
+    public FMODUnity.EventReference onDestroySound;
+    
+    public FMODUnity.EventReference onHitSound;
+
+    public int OnHitSoundPercentage = 40;
+
 #if UNITY_EDITOR
     [NaughtyAttributes.Button("Validate Data")]
     public void ValidateDataButton()
@@ -31,6 +37,15 @@ public class House : MonoBehaviour
 #if !UNITY_EDITOR
         ValidateData();
 #endif
+        Health.OnDeath += () => {
+            FMODUnity.RuntimeManager.PlayOneShot(onDestroySound, transform.position);
+        };
+
+        Health.OnDamage += (_) => {
+            if (OnHitSoundPercentage > UnityEngine.Random.Range(0, 100))
+                FMODUnity.RuntimeManager.PlayOneShot(onHitSound, transform.position);
+        };
+
     }
 
     void ValidateData()

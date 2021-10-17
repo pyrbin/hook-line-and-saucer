@@ -5,7 +5,7 @@
 			<value>octupus</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4b2c3178-239e-4a67-ba31-83bd9c3e86e0}</destination>
@@ -90,7 +90,11 @@
 			<destination>{d111ee3e-c774-4e5a-af7e-2a5e4ef52147}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{4085a5dd-bf29-4148-9bce-e993b22ab852}" />
+	<object class="MultiSound" id="{4085a5dd-bf29-4148-9bce-e993b22ab852}">
+		<relationship name="sounds">
+			<destination>{9e26ad1b-09c0-4b48-926c-474ffbc8ed14}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{275de6ec-0598-418c-a7be-a43ebea7c851}">
 		<relationship name="effects">
 			<destination>{aa8c5707-a718-415d-a579-fd19fd2ccf62}</destination>
@@ -117,6 +121,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1e3c1728-9d04-426d-b399-69a2b379a884}" />
+	<object class="SingleSound" id="{9e26ad1b-09c0-4b48-926c-474ffbc8ed14}">
+		<relationship name="audioFile">
+			<destination>{74618757-b412-426f-b011-cdc90046c1e2}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{aa8c5707-a718-415d-a579-fd19fd2ccf62}" />
 	<object class="MixerBusEffectChain" id="{35373152-94ff-4f77-bed4-f471d64e829f}">
 		<relationship name="effects">
