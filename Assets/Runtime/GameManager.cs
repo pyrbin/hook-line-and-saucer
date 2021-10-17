@@ -18,8 +18,18 @@ public class GameManager : MonoBehaviour
     public Player player;    
     public PlayerHealth playerHealth;
 
-    void Start()
+
+    public static GameManager instance;
+
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+
         playerHealth.OnDeath += () => {
             SceneLoader.instance.NextScene();
         };

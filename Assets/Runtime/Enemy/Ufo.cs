@@ -86,6 +86,18 @@ public class Ufo : MonoBehaviour
         ValidateData();
         RendererEffect.enabled = false;
 
+        Health.OnDamage += (d) =>
+        {
+            Renderer.color = Color.red;
+
+            Timers.SetTimeout(1000, () => {
+                if (Renderer)
+                {
+                    Renderer.color = Color.white;
+                }
+            });
+        };
+
         Health.OnDeath += () =>
         {
             Sleeping = true;
