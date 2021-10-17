@@ -2599,7 +2599,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31919622, y: -0.49652743}
+  m_Offset: {x: -0.30573374, y: -0.9353671}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2610,7 +2610,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36160755, y: 8.235109}
+  m_Size: {x: 2.1114097, y: 7.3574305}
   m_EdgeRadius: 0
 --- !u!1 &990483110
 GameObject:
@@ -3466,7 +3466,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31919622, y: -0.49652743}
+  m_Offset: {x: 1.0829992, y: -0.9686966}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3477,7 +3477,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36160755, y: 8.235109}
+  m_Size: {x: 1.833664, y: 7.2907715}
   m_EdgeRadius: 0
 --- !u!1 &1471261272
 GameObject:
@@ -3748,7 +3748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 76086934809029114, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7773973
+      value: 1.7783505
       objectReference: {fileID: 0}
     - target: {fileID: 76086934809029115, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_RootOrder
@@ -3828,7 +3828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 76086935960780049, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7773973
+      value: 1.7783505
       objectReference: {fileID: 0}
     - target: {fileID: 76086935960780049, guid: fe6f5eb32d26bee40b4e34ee089fe4c2, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -4114,7 +4114,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31919622, y: -0.49652743}
+  m_Offset: {x: -0.27795887, y: -1.0381331}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4125,7 +4125,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36160755, y: 8.235109}
+  m_Size: {x: 2.0558605, y: 7.1518984}
   m_EdgeRadius: 0
 --- !u!1 &1870298366
 GameObject:
@@ -5127,6 +5127,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 1404249460}
     m_Modifications:
     - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: MaxFishes
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: SpawnRateRange.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: SpawnRateRange.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365787696645871268, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: Prefabs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -5182,6 +5194,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2365787696898111394, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2365787696898111395, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: m_Size.x
       value: 0.44548225
@@ -5197,6 +5213,10 @@ PrefabInstance:
     - target: {fileID: 2365787696898111395, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: m_Offset.y
       value: 0.024464011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365787697755466077, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.89
       objectReference: {fileID: 0}
     - target: {fileID: 2365787697755466078, guid: e4256a9bcd76e6345acf942dcaafb336, type: 3}
       propertyPath: m_Size.x

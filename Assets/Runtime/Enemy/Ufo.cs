@@ -9,7 +9,7 @@ public class Ufo : MonoBehaviour
     [Header("Movement")]
     public float Speed = 1.0f;
     public float2 SpeedRandom = new (0.8f, 1.5f);
-    public float XRandom = 2f;
+    public float XRandom = 1f;
 
     [Header("Range")]
     public float AttackRange = 2;
@@ -20,6 +20,7 @@ public class Ufo : MonoBehaviour
     public GameObject ProjectilePrefab;
 
     public SpriteRenderer Renderer;
+    public SpriteRenderer RendererEffect;
 
     public ParticleSystem Explosions;
 
@@ -68,9 +69,22 @@ public class Ufo : MonoBehaviour
         WaitForStabilize = true;
     }
 
+    public void SetEffect(Sprite sprite, int duration)
+    {
+        RendererEffect.enabled = true;
+        RendererEffect.sprite = sprite;
+
+        Timers.SetTimeout(duration, () =>
+        {
+            RendererEffect.enabled = false;
+            RendererEffect.sprite = null;
+        });
+    }
+
     void Start()
     {
         ValidateData();
+        RendererEffect.enabled = false;
 
         Health.OnDeath += () =>
         {
