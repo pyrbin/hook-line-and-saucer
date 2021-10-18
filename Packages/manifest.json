@@ -3,15 +3,15 @@
     "com.dbrizov.naughtyattributes": "2.1.1",
     "com.unity.burst": "1.6.1",
     "com.unity.cinemachine": "2.8.1",
-    "com.unity.feature.2d": "1.0.0",
     "com.unity.ide.visualstudio": "2.0.11",
     "com.unity.ide.vscode": "1.2.4",
     "com.unity.inputsystem": "1.1.1",
-    "com.unity.render-pipelines.universal": "13.0.0",
+    "com.unity.render-pipelines.universal": "11.0.0",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.6.2",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.7.3",
+    "nl.elraccoone.timers": "1.2.1",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -42,8 +42,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "nl.elraccoone.timers": "1.2.1"
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {

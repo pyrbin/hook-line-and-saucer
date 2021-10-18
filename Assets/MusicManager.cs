@@ -32,12 +32,15 @@ public class MusicManager : MonoBehaviour
             DestroyImmediate(gameObject);
             return;
         }
-    }
 
-    void Start() {
         gameState = FMODUnity.RuntimeManager.CreateInstance(Game);
         titleState = FMODUnity.RuntimeManager.CreateInstance(Title);
         deathState = FMODUnity.RuntimeManager.CreateInstance(Death);
+
+    }
+
+    void Start() {
+
     }
 
     public void StartGameMusic() {

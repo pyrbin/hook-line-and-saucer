@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        MusicManager.instance.StartGameMusic();
+        MusicManager.instance?.StartGameMusic();
 
         Score = 0;
 

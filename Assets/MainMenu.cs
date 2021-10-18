@@ -9,7 +9,13 @@ public class MainMenu : MonoBehaviour
     public GameObject Tutorial;
 
     void Start() {
-        MusicManager.instance.StartTitleMusic();
+        if (FMODUnity.RuntimeManager.HasBankLoaded("Master"))
+        {
+            Debug.Log("Master Bank Loaded");
+            MusicManager.instance.StartTitleMusic();
+        } else {
+            Debug.Log("Bank is not loaded");
+        }
     }
 
     public void PlayGame()
