@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GizmosDraw
 {
-    public readonly static Color DefaultColliderColor = new(0.568f, 0.956f, 0.545f, 0.752f);
+    public readonly static Color DefaultColliderColor = new Color(0.568f, 0.956f, 0.545f, 0.752f);
 
     public static void WireCapsule(Vector3 p1, Vector3 p2, float radius)
     {

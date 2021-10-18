@@ -10,7 +10,7 @@ public class FishSpawner : MonoBehaviour
     public List<GameObject> Prefabs;
 
     public int MaxFishes = 5;
-    public float2 SpawnRateRange = new(1.53f,3.23f);
+    public float2 SpawnRateRange = new float2(1.53f,3.23f);
 
     public int TotalFishes => Fishes.Count;
 
@@ -30,7 +30,7 @@ public class FishSpawner : MonoBehaviour
 
     public List<BoxCollider2D> SpawnAreas;
 
-    private List<Fish> Fishes = new();
+    private List<Fish> Fishes = new List<Fish>();
 
     public void Start()
     {

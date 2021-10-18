@@ -8,12 +8,12 @@ public class Ufo : MonoBehaviour
 {
     [Header("Movement")]
     public float Speed = 1.0f;
-    public float2 SpeedRandom = new (0.8f, 1.5f);
+    public float2 SpeedRandom = new float2(0.8f, 1.5f);
     public float XRandom = 1f;
 
     [Header("Range")]
     public float AttackRange = 2;
-    public float2 AttackRangeRandom = new (0.8f, 1.5f);
+    public float2 AttackRangeRandom = new float2(0.8f, 1.5f);
 
     [Header("Weapon")]
     public float AttackTime;

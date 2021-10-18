@@ -32,7 +32,7 @@ public class Fish : MonoBehaviour
     public FishState FishState;
 
     [SerializeField]
-    public FishStats Stats = new()
+    public FishStats Stats = new FishStats()
     {
         Damage = 1,
         SpeedMult = 1,
@@ -96,7 +96,9 @@ public class Fish : MonoBehaviour
         EnterState(state);
     }
 
-    public IFishStateBehaviour CurrentState => FishState == FishState.Swimming ? Swimming : Projectile;
+    public IFishStateBehaviour CurrentState => FishState == FishState.Swimming
+        ? (IFishStateBehaviour)Swimming
+        : (IFishStateBehaviour)Projectile;
 
     void EnterState(FishState state)
     {

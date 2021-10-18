@@ -28,9 +28,9 @@ public class UfoManager : MonoBehaviour
     }
 
     [SerializeField]
-    public List<House> Targets= new();
+    public List<House> Targets= new List<House>();
 
-    private List<Ufo> Ufos = new();
+    private List<Ufo> Ufos = new List<Ufo>();
 
     public BoxCollider2D SpawnArea;
 

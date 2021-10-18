@@ -53,7 +53,7 @@ abstract public class FishSpellBehaviour : MonoBehaviour
         OnInterrupt();
     }
 
-    private static List<Collider2D> results = new();
+    private static List<Collider2D> results = new List<Collider2D>();
 
     protected IEnumerable<Ufo> UfosOverlapping(Collider2D area)
     {
